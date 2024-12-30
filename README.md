@@ -1,2 +1,13 @@
 # Clean Architecture
-Good pratices using Rest API, Fle Management, Algorithms Sorte and Search, Clean Architecture, Spring JPA
+
+- Clean Architecture;
+- Sort Algorithms (Bubble Sort, Selection Sort and Selection Sort);
+- Search Algorithms (Linear Search and Binary Search);
+- Data Transfer Object (DTO)
+- Design Pattern Builder;
+- prompt command;
+- Fle Management;
+- PostgreSql;
+- Rest API;
+
+

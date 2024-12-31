@@ -8,7 +8,7 @@ import br.com.rhribeiro25.application.usecases.WriteEmployee;
 import br.com.rhribeiro25.infrastructure.files.mappers.EmployeeFileMapper;
 import br.com.rhribeiro25.infrastructure.files.repositories.EmployeeFileRepository;
 import br.com.rhribeiro25.infrastructure.database.repositories.EmployeeDbRepository;
-import br.com.rhribeiro25.infrastructure.database.repositories.EmployeeJpaRepository;
+import br.com.rhribeiro25.infrastructure.database.repositories.jpa.EmployeeJpaRepository;
 import br.com.rhribeiro25.infrastructure.messaging.mappers.EmployeeMsgMapper;
 import br.com.rhribeiro25.interfaces.controller.PromptController;
 import br.com.rhribeiro25.interfaces.mappers.EmployeeIntMapper;

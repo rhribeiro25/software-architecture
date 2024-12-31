@@ -4,6 +4,7 @@ import br.com.rhribeiro25.domain.models.Employee;
 import br.com.rhribeiro25.domain.repositories.EmployeeRepository;
 import br.com.rhribeiro25.infrastructure.database.entities.EmployeeDbEntity;
 import br.com.rhribeiro25.infrastructure.database.mappers.EmployeeDbMapper;
+import br.com.rhribeiro25.infrastructure.database.repositories.jpa.EmployeeJpaRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;

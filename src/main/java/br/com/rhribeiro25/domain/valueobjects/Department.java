@@ -1,4 +1,4 @@
-package br.com.rhribeiro25.domain.value_objects;
+package br.com.rhribeiro25.domain.valueobjects;
 
 public class Department {
 

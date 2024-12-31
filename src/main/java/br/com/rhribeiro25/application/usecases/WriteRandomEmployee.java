@@ -2,7 +2,7 @@ package br.com.rhribeiro25.application.usecases;
 
 import br.com.rhribeiro25.application.mappers.EmployeeAppMapper;
 import br.com.rhribeiro25.domain.repositories.EmployeeRepository;
-import br.com.rhribeiro25.domain.value_objects.Department;
+import br.com.rhribeiro25.domain.valueobjects.Department;
 import br.com.rhribeiro25.domain.models.Employee;
 import br.com.rhribeiro25.shared.enums.DepartmentEnum;
 import br.com.rhribeiro25.shared.enums.RoleEnum;

@@ -1,6 +1,6 @@
 package br.com.rhribeiro25.domain.models;
 
-import br.com.rhribeiro25.domain.value_objects.Department;
+import br.com.rhribeiro25.domain.valueobjects.Department;
 import br.com.rhribeiro25.shared.enums.DepartmentEnum;
 import br.com.rhribeiro25.shared.enums.RoleEnum;
 

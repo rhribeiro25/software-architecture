@@ -2,7 +2,7 @@
 
 This project combines a wide range of software engineering concepts to create an efficient and maintainable solution:
 
-Sorting and Searching Algorithms such as Bubble Sort, Selection Sort, Linear Search, and Binary Search, optimize data management and retrieval.
+- Sorting and Searching Algorithms such as Bubble Sort, Selection Sort, Linear Search, and Binary Search, optimize data management and retrieval.
 DTO (Data Transfer Object) ensures clean separation of data across layers, improving scalability.
 Builder Design Pattern simplifies the creation of complex objects.
 Domain-Driven Design (DDD) focuses on aligning the software model with business requirements, enhancing collaboration and clarity.

@@ -1,4 +1,4 @@
-package br.com.rhribeiro25.domain.entities.usuario;
+package br.com.rhribeiro25.domain.models;
 
 import br.com.rhribeiro25.domain.models.Employee;
 import br.com.rhribeiro25.domain.valueobjects.Department;

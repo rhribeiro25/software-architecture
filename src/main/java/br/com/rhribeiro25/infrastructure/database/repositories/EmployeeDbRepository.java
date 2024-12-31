@@ -25,9 +25,19 @@ public class EmployeeDbRepository implements EmployeeRepository {
     }
 
     @Override
+    public Employee update(Employee employee, Long id) {
+        return null;
+    }
+
+    @Override
     public List<Employee> findAll() {
         return repository.findAll().stream()
                 .map(mapper::toDomain)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Employee findById(Long id) {
+        return null;
     }
 }

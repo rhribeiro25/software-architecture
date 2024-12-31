@@ -24,6 +24,11 @@ public class EmployeeFileRepository implements EmployeeRepository {
         return employee;
     }
 
+    @Override
+    public Employee update(Employee employee, Long id) {
+        return null;
+    }
+
     public List<Employee> findAll() {
 
         try {
@@ -77,6 +82,11 @@ public class EmployeeFileRepository implements EmployeeRepository {
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
+        return null;
+    }
+
+    @Override
+    public Employee findById(Long id) {
         return null;
     }
 }

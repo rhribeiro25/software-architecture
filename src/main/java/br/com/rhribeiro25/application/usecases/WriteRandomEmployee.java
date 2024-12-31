@@ -1,19 +1,22 @@
 package br.com.rhribeiro25.application.usecases;
 
-import br.com.rhribeiro25.application.gateways.EmployeeRepository;
-import br.com.rhribeiro25.domain.Department;
-import br.com.rhribeiro25.domain.Employee;
-import br.com.rhribeiro25.domain.enums.DepartmentEnum;
-import br.com.rhribeiro25.domain.enums.RoleEnum;
+import br.com.rhribeiro25.application.mappers.EmployeeAppMapper;
+import br.com.rhribeiro25.domain.repositories.EmployeeRepository;
+import br.com.rhribeiro25.domain.value_objects.Department;
+import br.com.rhribeiro25.domain.models.Employee;
+import br.com.rhribeiro25.shared.enums.DepartmentEnum;
+import br.com.rhribeiro25.shared.enums.RoleEnum;
 
 import java.util.Random;
 
 public class WriteRandomEmployee {
 
-    private EmployeeRepository employeeRepository;
+    private final EmployeeRepository repository;
+    private final EmployeeAppMapper mapper;
 
-    public WriteRandomEmployee(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
+    public WriteRandomEmployee(EmployeeRepository repository, EmployeeAppMapper mapper) {
+        this.repository = repository;
+        this.mapper = mapper;
     }
 
     public void writeRandomly(String pathFile) {
@@ -46,9 +49,9 @@ public class WriteRandomEmployee {
                             .build())
                     .build();
 
-            System.out.println("Generated random employee: " + employee.getName() + ", Role: " + employee.getRole() + ", Department: " + employee.getDepartment().getName());
+            System.out.println("Generated random employee: " + employee.getName() + ", Role: " + employee.getRole() + ", DepartmentFileEntity: " + employee.getDepartment().getName());
 
-            employeeRepository.write(employee, pathFile);
+            repository.save(employee);
         }
     }
 

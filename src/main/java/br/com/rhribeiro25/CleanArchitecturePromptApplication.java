@@ -1,15 +1,14 @@
 package br.com.rhribeiro25;
 
-import br.com.rhribeiro25.application.gateways.EmployeeRepository;
+import br.com.rhribeiro25.configurations.InjectsConfig;
 import br.com.rhribeiro25.application.usecases.*;
-import br.com.rhribeiro25.domain.Employee;
-import br.com.rhribeiro25.domain.enums.MenuEnum;
-import br.com.rhribeiro25.domain.enums.SearchEnum;
-import br.com.rhribeiro25.infra.controller.PromptController;
-import br.com.rhribeiro25.infra.gateways.EmployeeFileRepositoryImpl;
-import br.com.rhribeiro25.infra.gateways.PrintEmployee;
+import br.com.rhribeiro25.domain.models.Employee;
+import br.com.rhribeiro25.infrastructure.files.enums.MenuEnum;
+import br.com.rhribeiro25.infrastructure.files.enums.SearchEnum;
+import br.com.rhribeiro25.interfaces.controller.PromptController;
 import br.com.rhribeiro25.application.usecases.WriteEmployee;
 import br.com.rhribeiro25.application.usecases.WriteRandomEmployee;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.io.IOException;
 
@@ -17,15 +16,14 @@ public class CleanArchitecturePromptApplication {
 
     public static void main(String[] args) throws IOException {
 
-        EmployeeRepository employeeRepository = new EmployeeFileRepositoryImpl();
-        WriteEmployee writeEmployee = new WriteEmployee(employeeRepository);
-        WriteRandomEmployee writeRandomEmployee = new WriteRandomEmployee(employeeRepository);
-        ReadEmployee readEmployee = new ReadEmployee(employeeRepository);
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(InjectsConfig.class);
 
-        PromptController inputService = new PromptController();
-        SearchEmployee searchService = new SearchEmployee();
-        SortedEmployee sortedEmployeeService = new SortedEmployee();
-        PrintEmployee printEmployee = new PrintEmployee();
+        WriteEmployee writeEmployee = context.getBean(WriteEmployee.class);
+        WriteRandomEmployee writeRandomEmployee = context.getBean(WriteRandomEmployee.class);
+        ReadEmployee readEmployee = context.getBean(ReadEmployee.class);
+        PromptController inputService = context.getBean(PromptController.class);
+        SearchEmployee searchService = context.getBean(SearchEmployee.class);
+        SortedEmployee sortedEmployeeService = context.getBean(SortedEmployee.class);
 
         System.out.println("\n");
         System.out.println("*************************************************************");
@@ -34,13 +32,8 @@ public class CleanArchitecturePromptApplication {
 
         String pathFile = inputService.getPathInput("Please, insert the file name: ");
 
-        Employee[] employeeList;
-        try {
-            employeeList = readEmployee.readAll(pathFile);
-        } catch (IOException e) {
-            System.out.println("Error reading the file: " + e.getMessage());
-            return;
-        }
+        Employee[] employeeArray = readEmployee.readAll().toArray(new Employee[0]);
+
 
         int optionInt;
         MenuEnum option = MenuEnum.EXIT;
@@ -50,7 +43,7 @@ public class CleanArchitecturePromptApplication {
                 System.out.println("*************************************************************");
                 System.out.println("\t\t\t Please, select one of the options:");
                 System.out.println("*************************************************************");
-                printEmployee.printMenuItems();
+                inputService.printMenuItems();
                 System.out.println("*************************************************************");
                 optionInt = inputService.getMenuInput("Insert your choice: ");
 
@@ -66,9 +59,9 @@ public class CleanArchitecturePromptApplication {
                     System.out.println("List of the first twenty employees sorted in ascending order:");
                     System.out.println("*************************************************************");
 
-                    if (employeeList != null && employeeList.length > 0) {
-                        sortedEmployeeService.mergeSort(employeeList);
-                        printEmployee.printFirstTwenty(employeeList);
+                    if (employeeArray != null && employeeArray.length > 0) {
+                        sortedEmployeeService.mergeSort(employeeArray);
+                        inputService.printFirstTwenty(employeeArray);
                     } else {
                         System.out.println("Employee list is empty or not loaded.");
                     }
@@ -102,7 +95,7 @@ public class CleanArchitecturePromptApplication {
                             // Search by Name
                             String employeeName = inputService.getNameInput("Insert the Employee Name: ").trim();
                             System.out.println("*************************************************************");
-                            Employee foundEmployee = searchService.binarySearchEmployee(employeeList, employeeName);
+                            Employee foundEmployee = searchService.binarySearchEmployee(employeeArray, employeeName);
                             if (foundEmployee != null) {
                                 System.out.println(foundEmployee);
                             } else {
@@ -111,21 +104,21 @@ public class CleanArchitecturePromptApplication {
                             break;
 
                         case DEPARTMENT:
-                            // Search by Department
+                            // Search by DepartmentFileEntity
                             System.out.println("*************************************************************");
                             System.out.println("Here are the available departments:");
                             System.out.println("*************************************************************");
-                            printEmployee.printDepartmentItems();
+                            inputService.printDepartmentItems();
                             System.out.println("*************************************************************");
 
                             int departmentKey = inputService.getSearchInput("Insert department number: ");
                             System.out.println("*************************************************************");
 
-                            printEmployee.printEmployeesByDepartment(employeeList, departmentKey);
-                            Employee[] departmentResults = searchService.linearSearchByDepartment(employeeList, departmentKey, 0);
+                            inputService.printEmployeesByDepartment(employeeArray, departmentKey);
+                            Employee[] departmentResults = searchService.linearSearchByDepartment(employeeArray, departmentKey, 0);
 
                             if (departmentResults != null && departmentResults.length > 0) {
-                                printEmployee.printFirstTwenty(departmentResults);
+                                inputService.printFirstTwenty(departmentResults);
                             } else {
                                 System.out.println("No employees found in this department.");
                             }
@@ -136,16 +129,16 @@ public class CleanArchitecturePromptApplication {
                             System.out.println("*************************************************************");
                             System.out.println("Here are the available roles:");
                             System.out.println("*************************************************************");
-                            printEmployee.printRoleItems();
+                            inputService.printRoleItems();
 
                             int roleKey = inputService.getSearchInput("Insert role number: ");
                             System.out.println("*************************************************************");
 
-                            printEmployee.printEmployeesByRole(employeeList, roleKey);
-                            Employee[] roleResults = searchService.linearSearchByRole(employeeList, roleKey, 0);
+                            inputService.printEmployeesByRole(employeeArray, roleKey);
+                            Employee[] roleResults = searchService.linearSearchByRole(employeeArray, roleKey, 0);
 
                             if (roleResults != null && roleResults.length > 0) {
-                                printEmployee.printFirstTwenty(roleResults);
+                                inputService.printFirstTwenty(roleResults);
                             } else {
                                 System.out.println("No employees found with this role.");
                             }
@@ -160,11 +153,7 @@ public class CleanArchitecturePromptApplication {
                     System.out.println("*************************************************************");
                     System.out.println(writeEmployee.write(pathFile));
 
-                    try {
-                        employeeList = readEmployee.readAll(pathFile);
-                    } catch (IOException e) {
-                        System.out.println("Error to read the file: " + e.getMessage());
-                    }
+                    employeeArray = readEmployee.readAll().toArray(new Employee[0]);
 
                     System.out.println("*************************************************************");
                     System.out.println("\t\t\t\t Employee stored successfully!");
@@ -179,13 +168,9 @@ public class CleanArchitecturePromptApplication {
                     System.out.println("*************************************************************");
                     writeRandomEmployee.writeRandomly(pathFile);
 
-                    try {
-                        employeeList = readEmployee.readAll(pathFile);
-                    } catch (IOException e) {
-                        System.out.println("Error to read the file: " + e.getMessage());
-                    }
+                    employeeArray = readEmployee.readAll().toArray(new Employee[0]);
 
-                    printEmployee.printRandoms(employeeList);
+                    inputService.printRandoms(employeeArray);
 
                     break;
 
@@ -195,7 +180,7 @@ public class CleanArchitecturePromptApplication {
                     System.out.println("*************************************************************");
                     System.out.println("Here are all the employees:");
                     System.out.println("*************************************************************");
-                    printEmployee.printAll(employeeList);
+                    inputService.printAll(employeeArray);
 
 
                 case EXIT:

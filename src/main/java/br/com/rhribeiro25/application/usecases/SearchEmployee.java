@@ -1,11 +1,15 @@
 package br.com.rhribeiro25.application.usecases;
 
-import br.com.rhribeiro25.domain.enums.DepartmentEnum;
-import br.com.rhribeiro25.domain.Employee;
+import br.com.rhribeiro25.domain.models.Employee;
+import br.com.rhribeiro25.shared.enums.DepartmentEnum;
 
 public class SearchEmployee {
 
-    private SortedEmployee sortedEmployee = new SortedEmployee();
+    private final SortedEmployee sortedEmployee;
+
+    public SearchEmployee(SortedEmployee sortedEmployee) {
+        this.sortedEmployee = sortedEmployee;
+    }
 
 
     public Employee binarySearchEmployee(Employee[] employeeList, String name) {

@@ -1,21 +1,23 @@
 package br.com.rhribeiro25.application.usecases;
 
-import br.com.rhribeiro25.application.gateways.EmployeeRepository;
-import br.com.rhribeiro25.domain.Department;
-import br.com.rhribeiro25.domain.Employee;
-import br.com.rhribeiro25.domain.enums.DepartmentEnum;
-import br.com.rhribeiro25.domain.enums.RoleEnum;
-import br.com.rhribeiro25.infra.controller.PromptController;
-import br.com.rhribeiro25.infra.gateways.PrintEmployee;
+import br.com.rhribeiro25.application.mappers.EmployeeAppMapper;
+import br.com.rhribeiro25.domain.repositories.EmployeeRepository;
+import br.com.rhribeiro25.domain.value_objects.Department;
+import br.com.rhribeiro25.domain.models.Employee;
+import br.com.rhribeiro25.interfaces.controller.PromptController;
+import br.com.rhribeiro25.shared.enums.DepartmentEnum;
+import br.com.rhribeiro25.shared.enums.RoleEnum;
 
 public class WriteEmployee {
 
-    private PrintEmployee printEmployee = new PrintEmployee();
-    private PromptController inputService = new PromptController();
-    private EmployeeRepository employeeRepository;
+    private final PromptController inputService;
+    private final EmployeeRepository repository;
+    private final EmployeeAppMapper mapper;
 
-    public WriteEmployee(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
+    public WriteEmployee(PromptController inputService, EmployeeRepository repository, EmployeeAppMapper mapper) {
+        this.inputService = inputService;
+        this.repository = repository;
+        this.mapper = mapper;
     }
 
     public Employee write(String pathFile) {
@@ -29,9 +31,9 @@ public class WriteEmployee {
         int inputDep;
 
         do {
-            printEmployee.printDepartmentItems();
+            inputService.printDepartmentItems();
             System.out.println("*************************************************************");
-            inputDep = inputService.getDepartmentInput("Department: ");
+            inputDep = inputService.getDepartmentInput("DepartmentFileEntity: ");
             if (inputDep != -1) {
                 employee.setDepartment(new Department.Builder()
                         .name(DepartmentEnum.fromKey(inputDep).name())
@@ -43,7 +45,7 @@ public class WriteEmployee {
 
         int inputRole;
         do {
-            printEmployee.printRoleItems();
+            inputService.printRoleItems();
             System.out.println("*************************************************************");
             inputRole = inputService.getRoleInput("Role: ");
 
@@ -53,7 +55,7 @@ public class WriteEmployee {
         } while (inputRole == -1);
         System.out.println("*************************************************************");
 
-        employeeRepository.write(employee, pathFile);
+        repository.save(employee);
 
         return employee;
     }

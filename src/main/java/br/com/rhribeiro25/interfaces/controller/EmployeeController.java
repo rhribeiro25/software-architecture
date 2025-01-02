@@ -41,11 +41,8 @@ public class EmployeeController {
     }
 
     @PostMapping("/bulk")
-    public List<EmployeeResponse> createList(@RequestParam StorageEnum storage) {
-        return switch (storage) {
-            case FILE -> writeRandomEmployee.writeRandomly();
-            default -> new ArrayList<>();
-        };
+    public List<EmployeeResponse> createList() {
+        return writeRandomEmployee.writeRandomly();
     }
 
     @GetMapping

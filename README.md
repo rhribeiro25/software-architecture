@@ -14,69 +14,53 @@ These technologies work together to build a robust and scalable application, fol
 
 # Technical Instructions
 
-## Department in PostgreSql
-Request:
-curl -X POST "https://api.example.com" \
-  -H "Content-Type: application/json" \
-  -d '{"key1":"value1", "key2":"value2"}'
-
-
+## Request for Department Creation (PostgreSql)
 curl --location 'http://localhost:9090/departments' \
 --header 'Content-Type: application/json' \
 --data '{
     "code": "FIN_01",
     "name": "Financial"
 }'
-
-Response:
+## Response:
 {
     "code": "FIN_01"
 }
 
-## Employee in PostgreSql
-
-Request:
+## Request for Employee Creation (PostgreSql)
 curl --location 'http://localhost:9090/employees?storage=POSTGRES' \
 --header 'Content-Type: application/json' \
 --data '{
-	"name": "Rafael de Azevedo",
+    "name": "Rafael de Azevedo",
     "role": "TEAM_LEADER",
     "salary": 20000.00,
     "departmentCode": "FIN_01"
 }'
-
-Reponse: 
+## Response:
 {
     "name": "Rafael de Azevedo",
     "role": "TEAM_LEADER",
     "departmentCode": "FIN_01"
 }
 
-## Employee in File
-
-Request:
+## Request for Employee Creation (File)
 curl --location 'http://localhost:9090/employees?storage=FILE' \
 --header 'Content-Type: application/json' \
 --data '{
-	"name": "Rafael de Azevedo",
+    "name": "Rafael de Azevedo",
     "role": "TEAM_LEADER",
     "salary": 20000.00,
     "departmentCode": "FIN_01"
 }'
-
-Reponse: 
+## Response:
 {
     "name": "Rafael de Azevedo",
     "role": "TEAM_LEADER",
     "departmentCode": "FIN_01"
 }
 
-## Employee Bulk in File
-
-Request:
+## Request for Employee Bulk Creation (File)
 curl --location --request POST 'http://localhost:9090/employees/bulk'
-
-Reponse: 
+## Response:
 [
     {
         "name": "Máire Ní Bhraonáin",
@@ -104,6 +88,7 @@ Reponse:
         "departmentCode": "HR_01"
     }
 ]
+
 
 ## Custom Constraints
 

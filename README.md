@@ -14,38 +14,91 @@ These technologies work together to build a robust and scalable application, fol
 
 # Technical Instructions
 
-## Department
+## Department in PostgreSql
 Request:
 curl --location 'http://localhost:9090/departments' \
 --header 'Content-Type: application/json' \
 --data '{
-    "code": "FIN-01",
-    "name": "Financial 01"
+    "code": "FIN_01",
+    "name": "Financial"
 }'
 
 Response:
 {
-    "code": "FIN-01"
+    "code": "FIN_01"
 }
 
-## Employee
+## Employee in PostgreSql
 
 Request:
-curl --location 'http://localhost:9090/employees' \
+curl --location 'http://localhost:9090/employees?storage=POSTGRES' \
 --header 'Content-Type: application/json' \
 --data '{
 	"name": "Rafael de Azevedo",
     "role": "TEAM_LEADER",
     "salary": 20000.00,
-    "departmentCode": "FIN-01"
+    "departmentCode": "FIN_01"
 }'
 
 Reponse: 
 {
     "name": "Rafael de Azevedo",
     "role": "TEAM_LEADER",
-    "departmentCode": "FIN-01"
+    "departmentCode": "FIN_01"
 }
+
+## Employee in File
+
+Request:
+curl --location 'http://localhost:9090/employees?storage=FILE' \
+--header 'Content-Type: application/json' \
+--data '{
+	"name": "Rafael de Azevedo",
+    "role": "TEAM_LEADER",
+    "salary": 20000.00,
+    "departmentCode": "FIN_01"
+}'
+
+Reponse: 
+{
+    "name": "Rafael de Azevedo",
+    "role": "TEAM_LEADER",
+    "departmentCode": "FIN_01"
+}
+
+## Employee Bulk in File
+
+Request:
+curl --location --request POST 'http://localhost:9090/employees/bulk'
+
+Reponse: 
+[
+    {
+        "name": "Máire Ní Bhraonáin",
+        "role": "MAIN_MANAGER",
+        "departmentCode": "FIN_01"
+    },
+    {
+        "name": "Seamus O'Rourke",
+        "role": "TEAM_LEADER",
+        "departmentCode": "FIN_01"
+    },
+    {
+        "name": "Máire Ní Bhraonáin",
+        "role": "MAIN_MANAGER",
+        "departmentCode": "FIN_01"
+    },
+    {
+        "name": "Fionn McCarthy",
+        "role": "TEAM_LEADER",
+        "departmentCode": "MKT_01"
+    },
+    {
+        "name": "Bernadette McBride",
+        "role": "ASSISTANT_MANAGER",
+        "departmentCode": "HR_01"
+    }
+]
 
 ## Custom Constraints
 

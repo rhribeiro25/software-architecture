@@ -58,8 +58,11 @@ public class DepartmentDbEntity {
 
     @Override
     public String toString() {
-        return "DepartmentFileEntity{" +
-                "name='" + name + '\'' +
+        return "DepartmentDbEntity{" +
+                "id=" + id +
+                ", code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", employees=" + employees +
                 '}';
     }
 

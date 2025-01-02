@@ -28,7 +28,7 @@ public class EmployeeDbRepository implements EmployeeRepository {
     public Employee save(Employee employee) {
         Optional<DepartmentDbEntity> department = departmentJpaRepository.findByCode(employee.getDepartmentCode());
         EmployeeDbEntity entity = mapper.toEntity(employee);
-        entity.setDepartment(department.orElseThrow(() -> new RuntimeException("Department not found with CNPJ: " + employee.getDepartmentCode())));
+        entity.setDepartment(department.orElseThrow(() -> new RuntimeException("Department not found with DepartmentCode: " + employee.getDepartmentCode())));
         employeeJpaRepository.save(entity);
         return mapper.toDomain(entity);
     }

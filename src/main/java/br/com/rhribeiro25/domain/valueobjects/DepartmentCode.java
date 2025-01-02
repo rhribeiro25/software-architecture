@@ -1,13 +1,13 @@
 package br.com.rhribeiro25.domain.valueobjects;
 
-public class CNPJ {
+public class DepartmentCode {
     private String value;
 
     public String getValue() {
         return value;
     }
 
-    private CNPJ(CNPJ.Builder builder) {
+    private DepartmentCode(DepartmentCode.Builder builder) {
         this.value = builder.value;
     }
 
@@ -15,13 +15,13 @@ public class CNPJ {
 
         private String value;
 
-        public CNPJ.Builder value(String value) {
+        public DepartmentCode.Builder value(String value) {
             this.value = value;
             return this;
         }
 
-        public CNPJ build() {
-            return new CNPJ(this);
+        public DepartmentCode build() {
+            return new DepartmentCode(this);
         }
     }
 }

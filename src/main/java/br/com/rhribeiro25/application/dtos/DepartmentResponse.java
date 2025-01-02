@@ -21,7 +21,7 @@ public class DepartmentResponse {
 
     @Override
     public String toString() {
-        return "DepartmentFileEntity{" +
+        return "DepartmentResponse{" +
                 "code='" + code + '\'' +
                 '}';
     }
@@ -30,7 +30,7 @@ public class DepartmentResponse {
 
         private String code;
 
-        public Builder code(String name) {
+        public Builder code(String code) {
             this.code = code;
             return this;
         }

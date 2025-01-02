@@ -1,6 +1,6 @@
 package br.com.rhribeiro25.domain.models;
 
-import br.com.rhribeiro25.domain.valueobjects.CNPJ;
+import br.com.rhribeiro25.domain.valueobjects.DepartmentCode;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Department {
 
-    private CNPJ code;
+    private DepartmentCode code;
 
     private String name;
 
@@ -40,7 +40,7 @@ public class Department {
         this.employees = employees;
     }
 
-    public CNPJ getCode() {
+    public DepartmentCode getCode() {
         return code;
     }
 
@@ -64,20 +64,20 @@ public class Department {
 
     @Override
     public String toString() {
-        return "DepartmentFileEntity{" +
+        return "Department{" +
                 "name='" + name + '\'' +
                 '}';
     }
 
     public static class Builder {
 
-        private CNPJ code;
+        private DepartmentCode code;
 
         private String name;
 
         private List<Employee> employees;
 
-        public Department.Builder code(CNPJ code) {
+        public Department.Builder code(DepartmentCode code) {
             this.code = code;
             return this;
         }

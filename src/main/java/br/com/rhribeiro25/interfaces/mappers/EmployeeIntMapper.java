@@ -1,8 +1,6 @@
 package br.com.rhribeiro25.interfaces.mappers;
 
 import br.com.rhribeiro25.domain.models.Employee;
-import br.com.rhribeiro25.domain.models.Department;
-import br.com.rhribeiro25.domain.valueobjects.CNPJ;
 import br.com.rhribeiro25.interfaces.dtos.EmployeeRequest;
 
 public class EmployeeIntMapper {

@@ -77,7 +77,7 @@ public class Employee {
     public String toString() {
         return "\t\t\t\t\tName: " + this.getName() + "\n" +
                 "\t\t\t\t\tRole: " + this.getRole().getDescription() + "\n" +
-                "\t\t\t\t\tDepartmentFileEntity: " + this.getDepartmentCode();
+                "\t\t\t\t\tDepartment: " + this.getDepartmentCode();
     }
 
     public String contentToFile() {

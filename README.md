@@ -16,6 +16,11 @@ These technologies work together to build a robust and scalable application, fol
 
 ## Department in PostgreSql
 Request:
+curl -X POST "https://api.example.com" \
+  -H "Content-Type: application/json" \
+  -d '{"key1":"value1", "key2":"value2"}'
+
+
 curl --location 'http://localhost:9090/departments' \
 --header 'Content-Type: application/json' \
 --data '{

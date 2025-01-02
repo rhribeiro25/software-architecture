@@ -47,4 +47,7 @@ Reponse:
     "departmentCode": "FIN-01"
 }
 
+## Custom Constraints
+
+![image](https://github.com/user-attachments/assets/d596e4c9-0596-4958-9239-6f7c05cd34a1)
 

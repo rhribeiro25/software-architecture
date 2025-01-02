@@ -15,19 +15,20 @@ These technologies work together to build a robust and scalable application, fol
 # Technical Instructions
 
 ## Request for Department Creation (PostgreSql)
-curl --location 'http://localhost:9090/departments' \
+curl -X POST 'http://localhost:9090/departments' \
 --header 'Content-Type: application/json' \
 --data '{
     "code": "FIN_01",
     "name": "Financial"
 }'
+
 ## Response:
 {
     "code": "FIN_01"
 }
 
 ## Request for Employee Creation (PostgreSql)
-curl --location 'http://localhost:9090/employees?storage=POSTGRES' \
+curl -X POST 'http://localhost:9090/employees?storage=POSTGRES' \
 --header 'Content-Type: application/json' \
 --data '{
     "name": "Rafael de Azevedo",
@@ -35,6 +36,7 @@ curl --location 'http://localhost:9090/employees?storage=POSTGRES' \
     "salary": 20000.00,
     "departmentCode": "FIN_01"
 }'
+
 ## Response:
 {
     "name": "Rafael de Azevedo",
@@ -43,7 +45,7 @@ curl --location 'http://localhost:9090/employees?storage=POSTGRES' \
 }
 
 ## Request for Employee Creation (File)
-curl --location 'http://localhost:9090/employees?storage=FILE' \
+curl -X POST 'http://localhost:9090/employees?storage=FILE' \
 --header 'Content-Type: application/json' \
 --data '{
     "name": "Rafael de Azevedo",
@@ -51,6 +53,7 @@ curl --location 'http://localhost:9090/employees?storage=FILE' \
     "salary": 20000.00,
     "departmentCode": "FIN_01"
 }'
+
 ## Response:
 {
     "name": "Rafael de Azevedo",
@@ -59,7 +62,8 @@ curl --location 'http://localhost:9090/employees?storage=FILE' \
 }
 
 ## Request for Employee Bulk Creation (File)
-curl --location --request POST 'http://localhost:9090/employees/bulk'
+curl -X POST 'http://localhost:9090/employees/bulk'
+
 ## Response:
 [
     {

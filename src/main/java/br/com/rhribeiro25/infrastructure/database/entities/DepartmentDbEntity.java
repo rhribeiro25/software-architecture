@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 @Table(
         name = "department",
-        uniqueConstraints = @UniqueConstraint(name = "employee_id_code_uk", columnNames = {"id", "code"})
+        uniqueConstraints = @UniqueConstraint(name = "employee_code_uk", columnNames = {"code"})
 )
 public class DepartmentDbEntity {
 
@@ -15,7 +15,7 @@ public class DepartmentDbEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String code;
 
     @Column

@@ -10,9 +10,11 @@ import br.com.rhribeiro25.infrastructure.database.repositories.jpa.DepartmentJpa
 import br.com.rhribeiro25.infrastructure.file.mappers.EmployeeFileMapper;
 import br.com.rhribeiro25.infrastructure.database.repositories.EmployeeDbRepository;
 import br.com.rhribeiro25.infrastructure.database.repositories.jpa.EmployeeJpaRepository;
+import br.com.rhribeiro25.infrastructure.file.repositories.EmployeeFileRepository;
 import br.com.rhribeiro25.infrastructure.messaging.mappers.EmployeeMsgMapper;
 import br.com.rhribeiro25.interfaces.mappers.DepartmentIntMapper;
 import br.com.rhribeiro25.interfaces.mappers.EmployeeIntMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import br.com.rhribeiro25.application.mappers.EmployeeAppMapper;
@@ -62,36 +64,46 @@ public class InjectsConfig {
     }
 
     @Bean
-    CreateEmployee createEmployeeBean(EmployeeRepository repository, EmployeeAppMapper mapper){
+    CreateEmployee createEmployeeBean(@Qualifier("employeeDbRepositoryBean") EmployeeRepository repository, EmployeeAppMapper mapper){
         return new CreateEmployee(repository, mapper);
     }
 
     @Bean
-    ListEmployee listEmployeeBean(EmployeeRepository repository, EmployeeAppMapper mapper){
+    WriteEmployee writeEmployeeBean(@Qualifier("employeeFileRepositoryBean") EmployeeRepository repository, EmployeeAppMapper mapper){
+        return new WriteEmployee(repository, mapper);
+    }
+
+    @Bean
+    WriteRandomEmployee writeRandomEmployeeBean(@Qualifier("employeeFileRepositoryBean") EmployeeRepository repository, EmployeeAppMapper mapper){
+        return new WriteRandomEmployee(repository, mapper);
+    }
+
+    @Bean
+    ListEmployee listEmployeeBean(@Qualifier("employeeDbRepositoryBean") EmployeeRepository repository, EmployeeAppMapper mapper){
         return new ListEmployee(repository, mapper);
     }
 
     @Bean
-    ReadEmployee readEmployeeBean(EmployeeRepository repository, EmployeeAppMapper mapper){
-        return new ReadEmployee(repository, mapper);
-    }
-
-    @Bean
-    CreateDepartment createDepartmentBean(DepartmentRepository repository, DepartmentAppMapper mapper){
+    CreateDepartment createDepartmentBean(@Qualifier("departmentDbRepositoryBean") DepartmentRepository repository, DepartmentAppMapper mapper){
         return new CreateDepartment(repository, mapper);
     }
 
     @Bean
-    ListDepartment listDepartmentBean(DepartmentRepository repository, DepartmentAppMapper mapper){
+    ListDepartment listDepartmentBean(@Qualifier("departmentDbRepositoryBean") DepartmentRepository repository, DepartmentAppMapper mapper){
         return new ListDepartment(repository, mapper);
     }
 
-    @Bean
-    EmployeeDbRepository employeeDbRepositoryBean(EmployeeJpaRepository employeeJpaRepository, DepartmentJpaRepository departmentJpaRepository, EmployeeDbMapper mapper){
+    @Bean(name = "employeeDbRepositoryBean")
+    EmployeeRepository employeeDbRepositoryBean(EmployeeJpaRepository employeeJpaRepository, DepartmentJpaRepository departmentJpaRepository, EmployeeDbMapper mapper){
         return new EmployeeDbRepository(employeeJpaRepository, departmentJpaRepository, mapper );
     }
 
-    @Bean
+    @Bean(name = "employeeFileRepositoryBean")
+    EmployeeRepository employeeFileRepositoryBean(EmployeeFileMapper mapper){
+        return new EmployeeFileRepository(mapper);
+    }
+
+    @Bean(name = "departmentDbRepositoryBean")
     DepartmentDbRepository departmentDbRepositoryBean(DepartmentJpaRepository jpaRepository, DepartmentDbMapper mapper){
         return new DepartmentDbRepository(jpaRepository, mapper );
     }

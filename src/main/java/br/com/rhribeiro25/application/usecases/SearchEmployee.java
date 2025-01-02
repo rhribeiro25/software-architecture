@@ -1,7 +1,6 @@
 package br.com.rhribeiro25.application.usecases;
 
 import br.com.rhribeiro25.domain.models.Employee;
-import br.com.rhribeiro25.shared.enums.DepartmentEnum;
 
 public class SearchEmployee {
 
@@ -58,7 +57,7 @@ public class SearchEmployee {
             return new Employee[0];
         }
 
-//        if (DepartmentEnum.valueOf(employeeList[index].getDepartment().getName()).getKey() == depKey) {
+//        if (DepartmentCodeEnum.valueOf(employeeList[index].getDepartment().getName()).getKey() == depKey) {
 //            Employee[] result = linearSearchByDepartment(employeeList, depKey, index + 1);
 //            Employee[] newResult = new Employee[result.length + 1];
 //            newResult[0] = employeeList[index];

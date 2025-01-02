@@ -151,7 +151,7 @@ public class SoftwareArchitecturePromptApplication {
                     System.out.println("*************************************************************");
                     System.out.println("\t\t\t\t Inserting the new Employee:");
                     System.out.println("*************************************************************");
-                    System.out.println(writeEmployee.write(pathFile));
+//                    System.out.println(writeEmployee.simpleWrite(pathFile));
 
                     employeeArray = readEmployee.readAll().toArray(new Employee[0]);
 
@@ -166,7 +166,7 @@ public class SoftwareArchitecturePromptApplication {
                     System.out.println("*************************************************************");
                     System.out.println("\t\t\t\t Generating a random Employee");
                     System.out.println("*************************************************************");
-                    writeRandomEmployee.writeRandomly(pathFile);
+                    writeRandomEmployee.writeRandomly();
 
                     employeeArray = readEmployee.readAll().toArray(new Employee[0]);
 

@@ -3,7 +3,7 @@ package br.com.rhribeiro25.interfaces.controller;
 import br.com.rhribeiro25.application.usecases.SearchEmployee;
 import br.com.rhribeiro25.domain.models.Employee;
 import br.com.rhribeiro25.infrastructure.file.enums.MenuEnum;
-import br.com.rhribeiro25.shared.enums.DepartmentEnum;
+import br.com.rhribeiro25.shared.enums.DepartmentCodeEnum;
 import br.com.rhribeiro25.shared.enums.RoleEnum;
 
 import java.util.Scanner;
@@ -161,7 +161,7 @@ public class PromptController {
     }
 
     public void printDepartmentItems() {
-        for (DepartmentEnum menu : DepartmentEnum.values()) {
+        for (DepartmentCodeEnum menu : DepartmentCodeEnum.values()) {
             System.out.println(menu.getKey() + ". " + menu.getDescription());
         }
     }

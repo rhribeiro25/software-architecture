@@ -2,18 +2,30 @@ package br.com.rhribeiro25.infrastructure.file.entities;
 
 import br.com.rhribeiro25.shared.enums.RoleEnum;
 
+import java.math.BigDecimal;
+
 public class EmployeeFileEntity {
 
     private Long id;
+
     private String name;
+
     private RoleEnum role;
+
+    private int performanceRating;
+
+    private BigDecimal salary;
+
     private DepartmentFileEntity department;
 
-    public EmployeeFileEntity(Builder builder) {
+    public EmployeeFileEntity(){}
+
+    public EmployeeFileEntity(EmployeeFileEntity.Builder builder) {
         this.id = builder.id;
         this.name = builder.name;
         this.role = builder.role;
-        this.department = builder.department;
+        this.salary = builder.salary;
+        this.department = builder.departmentDbEntity;
     }
 
     public Long getId() {
@@ -40,8 +52,24 @@ public class EmployeeFileEntity {
         return department;
     }
 
-    public void setDepartment(DepartmentFileEntity department) {
-        this.department = department;
+    public void setDepartment(DepartmentFileEntity departmentDbEntity) {
+        this.department = departmentDbEntity;
+    }
+
+    public BigDecimal getSalary() {
+        return salary;
+    }
+
+    public void setSalary(BigDecimal salary) {
+        this.salary = salary;
+    }
+
+    public int getPerformanceRating() {
+        return performanceRating;
+    }
+
+    public void setPerformanceRating(int performanceRating) {
+        this.performanceRating = performanceRating;
     }
 
     public static class Builder {
@@ -49,25 +77,31 @@ public class EmployeeFileEntity {
         private Long id;
         private String name;
         private RoleEnum role;
-        private DepartmentFileEntity department;
+        private BigDecimal salary;
+        private DepartmentFileEntity departmentDbEntity;
 
-        public Builder id(Long id) {
+        public EmployeeFileEntity.Builder id(Long id) {
             this.id = id;
             return this;
         }
 
-        public Builder name(String name) {
+        public EmployeeFileEntity.Builder name(String name) {
             this.name = name;
             return this;
         }
 
-        public Builder role(RoleEnum role) {
+        public EmployeeFileEntity.Builder role(RoleEnum role) {
             this.role = role;
             return this;
         }
 
-        public Builder department(DepartmentFileEntity department) {
-            this.department = department;
+        public EmployeeFileEntity.Builder salary(BigDecimal salary) {
+            this.salary = salary;
+            return this;
+        }
+
+        public EmployeeFileEntity.Builder department(DepartmentFileEntity departmentDbEntity) {
+            this.departmentDbEntity = departmentDbEntity;
             return this;
         }
 

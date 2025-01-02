@@ -1,12 +1,15 @@
 package br.com.rhribeiro25.application.usecases;
 
+import br.com.rhribeiro25.application.dtos.EmployeeResponse;
 import br.com.rhribeiro25.application.mappers.EmployeeAppMapper;
 import br.com.rhribeiro25.domain.repositories.EmployeeRepository;
-import br.com.rhribeiro25.domain.models.Department;
 import br.com.rhribeiro25.domain.models.Employee;
-import br.com.rhribeiro25.shared.enums.DepartmentEnum;
+import br.com.rhribeiro25.shared.enums.DepartmentCodeEnum;
 import br.com.rhribeiro25.shared.enums.RoleEnum;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class WriteRandomEmployee {
@@ -19,7 +22,8 @@ public class WriteRandomEmployee {
         this.mapper = mapper;
     }
 
-    public void writeRandomly(String pathFile) {
+    public List<EmployeeResponse> writeRandomly() {
+        List<Employee> employeeList = new ArrayList<>();
         String[] names = {
                 "Fergus O'Riley", "Nora Kavanagh", "Patrick Sweeney", "Imelda Farrell", "Owen Quigley",
                 "Bernadette McBride", "Ciarán O'Shea", "Aine Walsh", "Eimear Mullan", "Cillian Hughes",
@@ -40,19 +44,18 @@ public class WriteRandomEmployee {
 
             RoleEnum role = RoleEnum.values()[random.nextInt(RoleEnum.values().length)];
 
-            String departmentName = DepartmentEnum.values()[random.nextInt(DepartmentEnum.values().length)].name();
+            String departmentCode = DepartmentCodeEnum.values()[random.nextInt(DepartmentCodeEnum.values().length)].name();
 
             Employee employee = new Employee.Builder()
+                    .name(name)
                     .role(role)
-//                    .department(new Department.Builder()
-//                            .name(departmentName)
-//                            .build())
+                    .salary(BigDecimal.valueOf(2000.00))
+                    .departmentCode(departmentCode)
                     .build();
 
-            System.out.println("Generated random employee: " + employee.getName() + ", Role: " + employee.getRole() + ", DepartmentFileEntity: " /*+ employee.getDepartment().getName()*/);
-
-            repository.save(employee);
+            employeeList.add(repository.save(employee));
         }
+        return mapper.toDtoList(employeeList);
     }
 
 }

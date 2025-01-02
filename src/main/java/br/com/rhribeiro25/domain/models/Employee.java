@@ -89,7 +89,7 @@ public class Employee {
     public String toStringInLine() {
         //return this.getName() + "," +
         //        this.getRole().getDescription() + "," +
-        //        DepartmentEnum.valueOf(this.getDepartmentId().getName()).getDescription();
+        //        DepartmentCodeEnum.valueOf(this.getDepartmentId().getName()).getDescription();
         return "";
     }
 

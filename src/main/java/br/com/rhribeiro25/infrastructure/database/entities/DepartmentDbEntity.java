@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 @Table(
         name = "department",
-        uniqueConstraints = @UniqueConstraint(name = "employee_id_cnpj_uk", columnNames = {"id", "cnpj"})
+        uniqueConstraints = @UniqueConstraint(name = "employee_id_code_uk", columnNames = {"id", "code"})
 )
 public class DepartmentDbEntity {
 
@@ -16,7 +16,7 @@ public class DepartmentDbEntity {
     private Long id;
 
     @Column(unique = true, nullable = false)
-    private String cnpj;
+    private String code;
 
     @Column
     private String name;
@@ -28,7 +28,7 @@ public class DepartmentDbEntity {
 
     private DepartmentDbEntity(Builder builder) {
         this.id = builder.id;
-        this.cnpj = builder.cnpj;
+        this.code = builder.code;
         this.name = builder.name;
     }
 
@@ -52,8 +52,8 @@ public class DepartmentDbEntity {
         this.employees = employees;
     }
 
-    public String getCnpj() {
-        return cnpj;
+    public String getCode() {
+        return code;
     }
 
     @Override
@@ -66,7 +66,7 @@ public class DepartmentDbEntity {
     public static class Builder {
 
         private Long id;
-        private String cnpj;
+        private String code;
         private String name;
 
         public DepartmentDbEntity.Builder id(Long id) {
@@ -74,8 +74,8 @@ public class DepartmentDbEntity {
             return this;
         }
 
-        public DepartmentDbEntity.Builder cnpj(String cnpj) {
-            this.cnpj = cnpj;
+        public DepartmentDbEntity.Builder code(String code) {
+            this.code = code;
             return this;
         }
 

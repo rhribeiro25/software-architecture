@@ -9,7 +9,7 @@ public record EmployeeRequest(
         String name,
         RoleEnum role,
         BigDecimal salary,
-        String departmentCnpj
+        String departmentCode
 ) {
 
     public static class Builder {
@@ -17,7 +17,7 @@ public record EmployeeRequest(
         private String name;
         private RoleEnum role;
         private BigDecimal salary;
-        private String departmentCnpj;
+        private String departmentCode;
 
 
         public EmployeeRequest.Builder name(String name) {
@@ -35,13 +35,13 @@ public record EmployeeRequest(
             return this;
         }
 
-        public EmployeeRequest.Builder departmentCnpj(String department) {
-            this.departmentCnpj = department;
+        public EmployeeRequest.Builder departmentCode(String department) {
+            this.departmentCode = department;
             return this;
         }
 
         public EmployeeRequest build() {
-            return new EmployeeRequest(name, role, salary, departmentCnpj);
+            return new EmployeeRequest(name, role, salary, departmentCode);
         }
     }
 }

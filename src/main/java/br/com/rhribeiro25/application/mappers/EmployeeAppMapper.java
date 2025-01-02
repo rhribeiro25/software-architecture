@@ -13,7 +13,7 @@ public class EmployeeAppMapper {
         return new EmployeeResponse.Builder()
                 .name(employee.getName())
                 .role(employee.getRole())
-                .departmentCnpj(employee.getDepartmentCnpj())
+                .departmentCode(employee.getDepartmentCode())
                 .build();
     }
 

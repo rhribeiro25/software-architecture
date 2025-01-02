@@ -11,7 +11,7 @@ public class EmployeeTest {
         Assertions.assertNotNull(new Employee.Builder()
                 .name("Jacque")
                 .role(RoleEnum.MAIN_MANAGER)
-                .departmentCnpj("123456789")
+                .departmentCode("123456789")
                 .build());
 
     }

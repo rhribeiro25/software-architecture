@@ -10,14 +10,14 @@ public class Employee {
     private RoleEnum role;
     private int performanceRating; // 1 a 5, onde 5 é o melhor desempenho
     private BigDecimal salary;
-    private String departmentCnpj;
+    private String departmentCode;
 
     public Employee() {}
 
     private Employee(Builder builder) {
         this.name = builder.name;
         this.role = builder.role;
-        this.departmentCnpj = builder.departmentCnpj;
+        this.departmentCode = builder.departmentCode;
         this.salary = builder.salary;
         this.performanceRating = builder.performanceRating;
     }
@@ -38,12 +38,12 @@ public class Employee {
         this.role = role;
     }
 
-    public String getDepartmentCnpj() {
-        return departmentCnpj;
+    public String getDepartmentCode() {
+        return departmentCode;
     }
 
-    public void setDepartmentCnpj(String departmentCnpj) {
-        this.departmentCnpj = departmentCnpj;
+    public void setDepartmentCode(String departmentCode) {
+        this.departmentCode = departmentCode;
     }
 
     public BigDecimal getSalary() {
@@ -77,13 +77,13 @@ public class Employee {
     public String toString() {
         return "\t\t\t\t\tName: " + this.getName() + "\n" +
                 "\t\t\t\t\tRole: " + this.getRole().getDescription() + "\n" +
-                "\t\t\t\t\tDepartmentFileEntity: " + this.getDepartmentCnpj();
+                "\t\t\t\t\tDepartmentFileEntity: " + this.getDepartmentCode();
     }
 
     public String contentToFile() {
         return this.getName() + "," +
                 this.getRole() + "," +
-                this.getDepartmentCnpj();
+                this.getDepartmentCode();
     }
 
     public String toStringInLine() {
@@ -99,7 +99,7 @@ public class Employee {
         private RoleEnum role;
         private BigDecimal salary;
         private int performanceRating;
-        private String departmentCnpj;
+        private String departmentCode;
 
         public Builder name(String name) {
             this.name = name;
@@ -121,8 +121,8 @@ public class Employee {
             return this;
         }
 
-        public Builder departmentCnpj(String departmentCnpj) {
-            this.departmentCnpj = departmentCnpj;
+        public Builder departmentCode(String departmentCode) {
+            this.departmentCode = departmentCode;
             return this;
         }
 

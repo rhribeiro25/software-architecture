@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Department {
 
-    private CNPJ cnpj;
+    private CNPJ code;
 
     private String name;
 
@@ -19,7 +19,7 @@ public class Department {
     }
 
     private Department(Department.Builder builder) {
-        this.cnpj = builder.cnpj;
+        this.code = builder.code;
         this.name = builder.name;
         this.employees = new ArrayList<>();
     }
@@ -40,8 +40,8 @@ public class Department {
         this.employees = employees;
     }
 
-    public CNPJ getCnpj() {
-        return cnpj;
+    public CNPJ getCode() {
+        return code;
     }
 
     public void addEmployee(Employee employee) {
@@ -71,14 +71,14 @@ public class Department {
 
     public static class Builder {
 
-        private CNPJ cnpj;
+        private CNPJ code;
 
         private String name;
 
         private List<Employee> employees;
 
-        public Department.Builder cnpj(CNPJ cnpj) {
-            this.cnpj = cnpj;
+        public Department.Builder code(CNPJ code) {
+            this.code = code;
             return this;
         }
 

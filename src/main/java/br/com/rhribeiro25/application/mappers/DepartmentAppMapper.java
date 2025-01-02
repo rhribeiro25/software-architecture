@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class DepartmentAppMapper {
     public DepartmentResponse toDto(Department department) {
         return new DepartmentResponse.Builder()
-                .cnpj(department.getCnpj().getValue())
+                .code(department.getCode().getValue())
                 .build();
     }
 

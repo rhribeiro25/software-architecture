@@ -44,8 +44,8 @@ public class DepartmentDbRepository implements DepartmentRepository {
     }
 
     @Override
-    public Department findByCnpj(String cnpj) {
-        Optional<DepartmentDbEntity> department = repository.findByCnpj(cnpj);
-        return mapper.toDomain(department.orElseThrow(() -> new RuntimeException("Department not found with CNPJ: " + cnpj)));
+    public Department findByCode(String code) {
+        Optional<DepartmentDbEntity> department = repository.findByCode(code);
+        return mapper.toDomain(department.orElseThrow(() -> new RuntimeException("Department not found with CNPJ: " + code)));
     }
 }

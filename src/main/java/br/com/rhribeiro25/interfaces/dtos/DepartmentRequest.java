@@ -3,13 +3,13 @@ package br.com.rhribeiro25.interfaces.dtos;
 //Dto Request
 public class DepartmentRequest {
 
-    private String cnpj;
+    private String code;
     private String name;
 
     public DepartmentRequest() {}
 
     private DepartmentRequest(Builder builder) {
-        this.cnpj = builder.cnpj;
+        this.code = builder.code;
         this.name = builder.name;
     }
 
@@ -21,8 +21,8 @@ public class DepartmentRequest {
         this.name = name;
     }
 
-    public String getCnpj() {
-        return cnpj;
+    public String getCode() {
+        return code;
     }
 
     @Override
@@ -34,11 +34,11 @@ public class DepartmentRequest {
 
     public static class Builder {
 
-        private String cnpj;
+        private String code;
         private String name;
 
-        public Builder cnpj(String cnpj) {
-            this.cnpj = cnpj;
+        public Builder code(String code) {
+            this.code = code;
             return this;
         }
 

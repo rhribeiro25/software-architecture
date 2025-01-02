@@ -13,14 +13,14 @@ public class EmployeeDbMapper {
                 .role(employee.getRole())
                 .salary(employee.getSalary())
                 .department(new DepartmentDbEntity.Builder()
-                        .cnpj(employee.getDepartmentCnpj()).build())
+                        .code(employee.getDepartmentCode()).build())
                 .build();
     }
 
     public Employee toDomain(EmployeeDbEntity employee) {
         return new Employee.Builder()
                 .name(employee.getName())
-                .departmentCnpj(employee.getDepartment().getCnpj())
+                .departmentCode(employee.getDepartment().getCode())
                 .role(employee.getRole())
                 .build();
     }

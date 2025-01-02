@@ -8,14 +8,14 @@ public class DepartmentDbMapper {
 
     public DepartmentDbEntity toEntity(Department department) {
         return new DepartmentDbEntity.Builder()
-                .cnpj(department.getCnpj().getValue())
+                .code(department.getCode().getValue())
                 .name(department.getName())
                 .build();
     }
 
     public Department toDomain(DepartmentDbEntity department) {
         return new Department.Builder()
-                .cnpj(new CNPJ.Builder().value(department.getCnpj()).build())
+                .code(new CNPJ.Builder().value(department.getCode()).build())
                 .name(department.getName())
                 .build();
     }

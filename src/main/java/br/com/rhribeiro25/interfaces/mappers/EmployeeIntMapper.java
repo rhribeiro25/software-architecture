@@ -12,7 +12,7 @@ public class EmployeeIntMapper {
                 .name(employee.name())
                 .role(employee.role())
                 .salary(employee.salary())
-                .departmentCnpj(employee.departmentCnpj())
+                .departmentCode(employee.departmentCode())
                 .build();
     }
 }

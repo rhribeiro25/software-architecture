@@ -9,7 +9,7 @@ public interface DepartmentRepository {
 
     Department findById(Long id);
 
-    Department findByCnpj(String cnpj);
+    Department findByCode(String code);
 
     Department save(Department department);
 

@@ -6,14 +6,14 @@ import br.com.rhribeiro25.shared.enums.RoleEnum;
 public record EmployeeResponse(
         String name,
         RoleEnum role,
-        String departmentCnpj
+        String departmentCode
 ) {
 
     public static class Builder {
 
         private String name;
         private RoleEnum role;
-        private String departmentCnpj;
+        private String departmentCode;
 
 
         public EmployeeResponse.Builder name(String name) {
@@ -26,13 +26,13 @@ public record EmployeeResponse(
             return this;
         }
 
-        public EmployeeResponse.Builder departmentCnpj(String department) {
-            this.departmentCnpj = department;
+        public EmployeeResponse.Builder departmentCode(String department) {
+            this.departmentCode = department;
             return this;
         }
 
         public EmployeeResponse build() {
-            return new EmployeeResponse(name, role, departmentCnpj);
+            return new EmployeeResponse(name, role, departmentCode);
         }
     }
 }

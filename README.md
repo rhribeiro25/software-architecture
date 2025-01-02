@@ -15,18 +15,20 @@ These technologies work together to build a robust and scalable application, fol
 # Technical Instructions
 
 ## Request for Department Creation (PostgreSql)
+```bash
 curl -X POST 'http://localhost:9090/departments' \
 --header 'Content-Type: application/json' \
 --data '{
     "code": "FIN_01",
     "name": "Financial"
 }'
-
+```
 ## Response:
+```json
 {
     "code": "FIN_01"
 }
-
+```
 ## Request for Employee Creation (PostgreSql)
 curl -X POST 'http://localhost:9090/employees?storage=POSTGRES' \
 --header 'Content-Type: application/json' \

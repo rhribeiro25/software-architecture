@@ -2,7 +2,7 @@ package br.com.rhribeiro25.interfaces.controller;
 
 import br.com.rhribeiro25.application.usecases.SearchEmployee;
 import br.com.rhribeiro25.domain.models.Employee;
-import br.com.rhribeiro25.infrastructure.files.enums.MenuEnum;
+import br.com.rhribeiro25.infrastructure.file.enums.MenuEnum;
 import br.com.rhribeiro25.shared.enums.DepartmentEnum;
 import br.com.rhribeiro25.shared.enums.RoleEnum;
 

@@ -1,4 +1,4 @@
-package br.com.rhribeiro25.infrastructure.files.enums; // Same package as your other classes
+package br.com.rhribeiro25.infrastructure.file.enums; // Same package as your other classes
 
 // Enum to represent the different search types
 public enum SearchEnum {

@@ -1,9 +1,8 @@
-package br.com.rhribeiro25.infrastructure.files.mappers;
+package br.com.rhribeiro25.infrastructure.file.mappers;
 
 import br.com.rhribeiro25.domain.models.Employee;
-import br.com.rhribeiro25.domain.models.Department;
-import br.com.rhribeiro25.infrastructure.files.entities.DepartmentFileEntity;
-import br.com.rhribeiro25.infrastructure.files.entities.EmployeeFileEntity;
+import br.com.rhribeiro25.infrastructure.file.entities.DepartmentFileEntity;
+import br.com.rhribeiro25.infrastructure.file.entities.EmployeeFileEntity;
 
 public class EmployeeFileMapper {
 

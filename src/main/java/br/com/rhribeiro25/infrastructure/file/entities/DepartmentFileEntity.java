@@ -1,4 +1,4 @@
-package br.com.rhribeiro25.infrastructure.files.entities;
+package br.com.rhribeiro25.infrastructure.file.entities;
 
 public class DepartmentFileEntity {
 

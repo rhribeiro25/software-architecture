@@ -1,7 +1,6 @@
-package br.com.rhribeiro25.infrastructure.files.repositories;
+package br.com.rhribeiro25.infrastructure.file.repositories;
 
 import br.com.rhribeiro25.domain.repositories.EmployeeRepository;
-import br.com.rhribeiro25.domain.models.Department;
 import br.com.rhribeiro25.domain.models.Employee;
 import br.com.rhribeiro25.shared.enums.RoleEnum;
 

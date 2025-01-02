@@ -7,7 +7,7 @@ import br.com.rhribeiro25.domain.repositories.EmployeeRepository;
 import br.com.rhribeiro25.infrastructure.database.mappers.DepartmentDbMapper;
 import br.com.rhribeiro25.infrastructure.database.repositories.DepartmentDbRepository;
 import br.com.rhribeiro25.infrastructure.database.repositories.jpa.DepartmentJpaRepository;
-import br.com.rhribeiro25.infrastructure.files.mappers.EmployeeFileMapper;
+import br.com.rhribeiro25.infrastructure.file.mappers.EmployeeFileMapper;
 import br.com.rhribeiro25.infrastructure.database.repositories.EmployeeDbRepository;
 import br.com.rhribeiro25.infrastructure.database.repositories.jpa.EmployeeJpaRepository;
 import br.com.rhribeiro25.infrastructure.messaging.mappers.EmployeeMsgMapper;

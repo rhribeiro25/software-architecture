@@ -1,4 +1,4 @@
-package br.com.rhribeiro25.infrastructure.files.enums;
+package br.com.rhribeiro25.infrastructure.file.enums;
 
 public  enum MenuEnum {
 

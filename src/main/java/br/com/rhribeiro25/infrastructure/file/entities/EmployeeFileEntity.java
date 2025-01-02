@@ -1,4 +1,4 @@
-package br.com.rhribeiro25.infrastructure.files.entities;
+package br.com.rhribeiro25.infrastructure.file.entities;
 
 import br.com.rhribeiro25.shared.enums.RoleEnum;
 

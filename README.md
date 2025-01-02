@@ -107,6 +107,16 @@ curl -X POST 'http://localhost:9090/employees/bulk'
 ]
 ```
 
+## Data Saved in File
+![image](https://github.com/user-attachments/assets/86549c58-e7c2-4bd1-aa0c-0f56177fdd9d)
+
+## Data Saved in PostgreSql
+![image](https://github.com/user-attachments/assets/139407b6-2d02-4758-a1f0-b99d27c7d6f6)
+![image](https://github.com/user-attachments/assets/3eb27784-f906-4bda-9cf4-1a45f0d5d9f5)
+
+
+
+
 ## Custom Constraints
 
 ![image](https://github.com/user-attachments/assets/d596e4c9-0596-4958-9239-6f7c05cd34a1)

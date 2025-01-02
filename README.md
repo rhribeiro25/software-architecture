@@ -111,11 +111,10 @@ curl -X POST 'http://localhost:9090/employees/bulk'
 ![image](https://github.com/user-attachments/assets/86549c58-e7c2-4bd1-aa0c-0f56177fdd9d)
 
 ## Data Saved in PostgreSql
+### Department Table
 ![image](https://github.com/user-attachments/assets/139407b6-2d02-4758-a1f0-b99d27c7d6f6)
+### Employee Table
 ![image](https://github.com/user-attachments/assets/3eb27784-f906-4bda-9cf4-1a45f0d5d9f5)
-
-
-
 
 ## Custom Constraints
 

@@ -30,6 +30,7 @@ curl -X POST 'http://localhost:9090/departments' \
 }
 ```
 ## Request for Employee Creation (PostgreSql)
+```bash
 curl -X POST 'http://localhost:9090/employees?storage=POSTGRES' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -38,15 +39,19 @@ curl -X POST 'http://localhost:9090/employees?storage=POSTGRES' \
     "salary": 20000.00,
     "departmentCode": "FIN_01"
 }'
+```
 
 ## Response:
+```json
 {
     "name": "Rafael de Azevedo",
     "role": "TEAM_LEADER",
     "departmentCode": "FIN_01"
 }
+```
 
 ## Request for Employee Creation (File)
+```bash
 curl -X POST 'http://localhost:9090/employees?storage=FILE' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -55,18 +60,24 @@ curl -X POST 'http://localhost:9090/employees?storage=FILE' \
     "salary": 20000.00,
     "departmentCode": "FIN_01"
 }'
+```
 
 ## Response:
+```json
 {
     "name": "Rafael de Azevedo",
     "role": "TEAM_LEADER",
     "departmentCode": "FIN_01"
 }
+```
 
 ## Request for Employee Bulk Creation (File)
+```bash
 curl -X POST 'http://localhost:9090/employees/bulk'
+```
 
 ## Response:
+```json
 [
     {
         "name": "Máire Ní Bhraonáin",
@@ -94,7 +105,7 @@ curl -X POST 'http://localhost:9090/employees/bulk'
         "departmentCode": "HR_01"
     }
 ]
-
+```
 
 ## Custom Constraints
 

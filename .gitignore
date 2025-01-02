@@ -34,3 +34,4 @@ build/
 
 ### Docker Compose files ###
 /sgbd/
+/out/

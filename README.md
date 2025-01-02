@@ -12,4 +12,39 @@ This project combines a wide range of software engineering concepts to create an
 
 These technologies work together to build a robust and scalable application, following industry best practices for software development.
 
+# Technical Instructions
+
+## Department
+Request:
+curl --location 'http://localhost:9090/departments' \
+--header 'Content-Type: application/json' \
+--data '{
+    "code": "FIN-01",
+    "name": "Financial 01"
+}'
+
+Response:
+{
+    "code": "FIN-01"
+}
+
+## Employee
+
+Request:
+curl --location 'http://localhost:9090/employees' \
+--header 'Content-Type: application/json' \
+--data '{
+	"name": "Rafael de Azevedo",
+    "role": "TEAM_LEADER",
+    "salary": 20000.00,
+    "departmentCode": "FIN-01"
+}'
+
+Reponse: 
+{
+    "name": "Rafael de Azevedo",
+    "role": "TEAM_LEADER",
+    "departmentCode": "FIN-01"
+}
+
 

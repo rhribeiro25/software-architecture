@@ -1,7 +1,5 @@
 package br.com.rhribeiro25.domain.models;
 
-import br.com.rhribeiro25.domain.models.Employee;
-import br.com.rhribeiro25.domain.valueobjects.Department;
 import br.com.rhribeiro25.shared.enums.RoleEnum;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,8 +11,7 @@ public class EmployeeTest {
         Assertions.assertNotNull(new Employee.Builder()
                 .name("Jacque")
                 .role(RoleEnum.MAIN_MANAGER)
-                .department(new Department.Builder()
-                        .name("Empresa teste").build())
+                .departmentCnpj("123456789")
                 .build());
 
     }

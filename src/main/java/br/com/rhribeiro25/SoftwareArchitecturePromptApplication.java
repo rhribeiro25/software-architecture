@@ -12,7 +12,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import java.io.IOException;
 
-public class CleanArchitecturePromptApplication {
+public class SoftwareArchitecturePromptApplication {
 
     public static void main(String[] args) throws IOException {
 

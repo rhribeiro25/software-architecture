@@ -2,7 +2,7 @@ package br.com.rhribeiro25.application.usecases;
 
 import br.com.rhribeiro25.application.mappers.EmployeeAppMapper;
 import br.com.rhribeiro25.domain.repositories.EmployeeRepository;
-import br.com.rhribeiro25.domain.valueobjects.Department;
+import br.com.rhribeiro25.domain.models.Department;
 import br.com.rhribeiro25.domain.models.Employee;
 import br.com.rhribeiro25.interfaces.controller.PromptController;
 import br.com.rhribeiro25.shared.enums.DepartmentEnum;
@@ -35,9 +35,9 @@ public class WriteEmployee {
             System.out.println("*************************************************************");
             inputDep = inputService.getDepartmentInput("DepartmentFileEntity: ");
             if (inputDep != -1) {
-                employee.setDepartment(new Department.Builder()
-                        .name(DepartmentEnum.fromKey(inputDep).name())
-                        .build());
+                //employee.setDepartment(new Department.Builder()
+                //        .name(DepartmentEnum.fromKey(inputDep).name())
+                //        .build());
             }
         } while (inputDep == -1);
 

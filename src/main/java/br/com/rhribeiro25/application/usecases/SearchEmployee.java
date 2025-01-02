@@ -58,15 +58,16 @@ public class SearchEmployee {
             return new Employee[0];
         }
 
-        if (DepartmentEnum.valueOf(employeeList[index].getDepartment().getName()).getKey() == depKey) {
-            Employee[] result = linearSearchByDepartment(employeeList, depKey, index + 1);
-            Employee[] newResult = new Employee[result.length + 1];
-            newResult[0] = employeeList[index];
-            System.arraycopy(result, 0, newResult, 1, result.length);
-            return newResult;
-        } else {
-            return linearSearchByDepartment(employeeList, depKey, index + 1);
-        }
+//        if (DepartmentEnum.valueOf(employeeList[index].getDepartment().getName()).getKey() == depKey) {
+//            Employee[] result = linearSearchByDepartment(employeeList, depKey, index + 1);
+//            Employee[] newResult = new Employee[result.length + 1];
+//            newResult[0] = employeeList[index];
+//            System.arraycopy(result, 0, newResult, 1, result.length);
+//            return newResult;
+//        } else {
+//            return linearSearchByDepartment(employeeList, depKey, index + 1);
+//        }
+        return null;
     }
 
 }

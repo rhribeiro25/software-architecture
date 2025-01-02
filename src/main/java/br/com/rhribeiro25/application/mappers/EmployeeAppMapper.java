@@ -12,9 +12,8 @@ public class EmployeeAppMapper {
     public EmployeeResponse toDto(Employee employee) {
         return new EmployeeResponse.Builder()
                 .name(employee.getName())
-                .department(new DepartmentResponse.Builder()
-                        .name(employee.getName()).build())
                 .role(employee.getRole())
+                .departmentCnpj(employee.getDepartmentCnpj())
                 .build();
     }
 

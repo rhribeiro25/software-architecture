@@ -2,7 +2,7 @@ package br.com.rhribeiro25.application.usecases;
 
 import br.com.rhribeiro25.application.mappers.EmployeeAppMapper;
 import br.com.rhribeiro25.domain.repositories.EmployeeRepository;
-import br.com.rhribeiro25.domain.valueobjects.Department;
+import br.com.rhribeiro25.domain.models.Department;
 import br.com.rhribeiro25.domain.models.Employee;
 import br.com.rhribeiro25.shared.enums.DepartmentEnum;
 import br.com.rhribeiro25.shared.enums.RoleEnum;
@@ -44,12 +44,12 @@ public class WriteRandomEmployee {
 
             Employee employee = new Employee.Builder()
                     .role(role)
-                    .department(new Department.Builder()
-                            .name(departmentName)
-                            .build())
+//                    .department(new Department.Builder()
+//                            .name(departmentName)
+//                            .build())
                     .build();
 
-            System.out.println("Generated random employee: " + employee.getName() + ", Role: " + employee.getRole() + ", DepartmentFileEntity: " + employee.getDepartment().getName());
+            System.out.println("Generated random employee: " + employee.getName() + ", Role: " + employee.getRole() + ", DepartmentFileEntity: " /*+ employee.getDepartment().getName()*/);
 
             repository.save(employee);
         }

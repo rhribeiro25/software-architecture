@@ -1,11 +1,9 @@
 package br.com.rhribeiro25.infrastructure.database.entities;
 
 import br.com.rhribeiro25.shared.enums.RoleEnum;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "employee")
@@ -13,14 +11,31 @@ public class EmployeeDbEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private RoleEnum role;
+
+    @Column
+    private int performanceRating;
+
+    @Column(precision = 10, scale = 2, nullable = false)
+    private BigDecimal salary;
+
+    @ManyToOne
+    @JoinColumn(name = "department_id", foreignKey = @ForeignKey(name = "department_fkey"), nullable = false)
     private DepartmentDbEntity department;
+
+    public EmployeeDbEntity(){}
 
     public EmployeeDbEntity(Builder builder) {
         this.id = builder.id;
         this.name = builder.name;
         this.role = builder.role;
+        this.salary = builder.salary;
         this.department = builder.departmentDbEntity;
     }
 
@@ -52,11 +67,28 @@ public class EmployeeDbEntity {
         this.department = departmentDbEntity;
     }
 
+    public BigDecimal getSalary() {
+        return salary;
+    }
+
+    public void setSalary(BigDecimal salary) {
+        this.salary = salary;
+    }
+
+    public int getPerformanceRating() {
+        return performanceRating;
+    }
+
+    public void setPerformanceRating(int performanceRating) {
+        this.performanceRating = performanceRating;
+    }
+
     public static class Builder {
 
         private Long id;
         private String name;
         private RoleEnum role;
+        private BigDecimal salary;
         private DepartmentDbEntity departmentDbEntity;
 
         public EmployeeDbEntity.Builder id(Long id) {
@@ -71,6 +103,11 @@ public class EmployeeDbEntity {
 
         public EmployeeDbEntity.Builder role(RoleEnum role) {
             this.role = role;
+            return this;
+        }
+
+        public EmployeeDbEntity.Builder salary(BigDecimal salary) {
+            this.salary = salary;
             return this;
         }
 

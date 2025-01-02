@@ -3,35 +3,35 @@ package br.com.rhribeiro25.application.dtos;
 // Dto Response
 public class DepartmentResponse {
 
-    private String name;
+    private String cnpj;
 
     public DepartmentResponse() {}
 
     private DepartmentResponse(Builder builder) {
-        this.name = builder.name;
+        this.cnpj = builder.cnpj;
     }
 
-    public String getName() {
-        return name;
+    public String getCnpj() {
+        return cnpj;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 
     @Override
     public String toString() {
         return "DepartmentFileEntity{" +
-                "name='" + name + '\'' +
+                "cnpj='" + cnpj + '\'' +
                 '}';
     }
 
     public static class Builder {
 
-        private String name;
+        private String cnpj;
 
-        public Builder name(String name) {
-            this.name = name;
+        public Builder cnpj(String name) {
+            this.cnpj = cnpj;
             return this;
         }
 

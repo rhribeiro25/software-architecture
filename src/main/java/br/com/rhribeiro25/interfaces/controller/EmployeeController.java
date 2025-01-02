@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/employees")
 public class EmployeeController {
 
     private final CreateEmployee createEmployee;
@@ -29,7 +29,7 @@ public class EmployeeController {
 
     @PostMapping
     public EmployeeResponse create(@RequestBody EmployeeRequest dto) {
-        return createEmployee.create(mapper.toDomain(dto));
+        return createEmployee.simpleCreation(mapper.toDomain(dto));
 
     }
 

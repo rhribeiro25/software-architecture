@@ -1,7 +1,7 @@
 package br.com.rhribeiro25.domain.services;
 
 import br.com.rhribeiro25.domain.models.Employee;
-import br.com.rhribeiro25.domain.valueobjects.Department;
+import br.com.rhribeiro25.domain.models.Department;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

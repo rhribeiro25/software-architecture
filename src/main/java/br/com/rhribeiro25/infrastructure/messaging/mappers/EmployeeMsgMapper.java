@@ -1,7 +1,7 @@
 package br.com.rhribeiro25.infrastructure.messaging.mappers;
 
 import br.com.rhribeiro25.domain.models.Employee;
-import br.com.rhribeiro25.domain.valueobjects.Department;
+import br.com.rhribeiro25.domain.models.Department;
 import br.com.rhribeiro25.infrastructure.messaging.entities.DepartmentMsgEntity;
 import br.com.rhribeiro25.infrastructure.messaging.entities.EmployeeMsgEntity;
 
@@ -19,8 +19,6 @@ public class EmployeeMsgMapper {
     public Employee toDomain(EmployeeMsgEntity employee) {
         return new Employee.Builder()
                 .name(employee.getName())
-                .department(new Department.Builder()
-                        .name(employee.getName()).build())
                 .role(employee.getRole())
                 .build();
     }

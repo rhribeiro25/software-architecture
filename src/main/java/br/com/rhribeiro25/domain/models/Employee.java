@@ -1,7 +1,5 @@
 package br.com.rhribeiro25.domain.models;
 
-import br.com.rhribeiro25.domain.valueobjects.Department;
-import br.com.rhribeiro25.shared.enums.DepartmentEnum;
 import br.com.rhribeiro25.shared.enums.RoleEnum;
 
 import java.math.BigDecimal;
@@ -12,14 +10,14 @@ public class Employee {
     private RoleEnum role;
     private int performanceRating; // 1 a 5, onde 5 é o melhor desempenho
     private BigDecimal salary;
-    private Department department;
+    private String departmentCnpj;
 
     public Employee() {}
 
     private Employee(Builder builder) {
         this.name = builder.name;
         this.role = builder.role;
-        this.department = builder.department;
+        this.departmentCnpj = builder.departmentCnpj;
         this.salary = builder.salary;
         this.performanceRating = builder.performanceRating;
     }
@@ -36,16 +34,16 @@ public class Employee {
         return role;
     }
 
-    public Department getDepartment() {
-        return department;
-    }
-
     public void setRole(RoleEnum role) {
         this.role = role;
     }
 
-    public void setDepartment(Department department) {
-        this.department = department;
+    public String getDepartmentCnpj() {
+        return departmentCnpj;
+    }
+
+    public void setDepartmentCnpj(String departmentCnpj) {
+        this.departmentCnpj = departmentCnpj;
     }
 
     public BigDecimal getSalary() {
@@ -79,19 +77,20 @@ public class Employee {
     public String toString() {
         return "\t\t\t\t\tName: " + this.getName() + "\n" +
                 "\t\t\t\t\tRole: " + this.getRole().getDescription() + "\n" +
-                "\t\t\t\t\tDepartmentFileEntity: " + this.getDepartment().getName();
+                "\t\t\t\t\tDepartmentFileEntity: " + this.getDepartmentCnpj();
     }
 
     public String contentToFile() {
         return this.getName() + "," +
                 this.getRole() + "," +
-                this.getDepartment().getName();
+                this.getDepartmentCnpj();
     }
 
     public String toStringInLine() {
-        return this.getName() + "," +
-                this.getRole().getDescription() + "," +
-                DepartmentEnum.valueOf(this.getDepartment().getName()).getDescription();
+        //return this.getName() + "," +
+        //        this.getRole().getDescription() + "," +
+        //        DepartmentEnum.valueOf(this.getDepartmentId().getName()).getDescription();
+        return "";
     }
 
     public static class Builder {
@@ -100,7 +99,7 @@ public class Employee {
         private RoleEnum role;
         private BigDecimal salary;
         private int performanceRating;
-        private Department department;
+        private String departmentCnpj;
 
         public Builder name(String name) {
             this.name = name;
@@ -122,8 +121,8 @@ public class Employee {
             return this;
         }
 
-        public Builder department(Department department) {
-            this.department = department;
+        public Builder departmentCnpj(String departmentCnpj) {
+            this.departmentCnpj = departmentCnpj;
             return this;
         }
 

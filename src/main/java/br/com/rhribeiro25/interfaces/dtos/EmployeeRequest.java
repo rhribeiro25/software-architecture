@@ -2,20 +2,22 @@ package br.com.rhribeiro25.interfaces.dtos;
 
 import br.com.rhribeiro25.shared.enums.RoleEnum;
 
+import java.math.BigDecimal;
+
 //Dto Request
 public record EmployeeRequest(
-
         String name,
         RoleEnum role,
-        DepartmentRequest department
+        BigDecimal salary,
+        String departmentCnpj
 ) {
 
     public static class Builder {
 
-
         private String name;
         private RoleEnum role;
-        private DepartmentRequest department;
+        private BigDecimal salary;
+        private String departmentCnpj;
 
 
         public EmployeeRequest.Builder name(String name) {
@@ -28,13 +30,18 @@ public record EmployeeRequest(
             return this;
         }
 
-        public EmployeeRequest.Builder department(DepartmentRequest department) {
-            this.department = department;
+        public EmployeeRequest.Builder salary(BigDecimal salary) {
+            this.salary = salary;
+            return this;
+        }
+
+        public EmployeeRequest.Builder departmentCnpj(String department) {
+            this.departmentCnpj = department;
             return this;
         }
 
         public EmployeeRequest build() {
-            return new EmployeeRequest(name, role, department);
+            return new EmployeeRequest(name, role, salary, departmentCnpj);
         }
     }
 }

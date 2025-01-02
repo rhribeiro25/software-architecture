@@ -1,7 +1,7 @@
 package br.com.rhribeiro25.infrastructure.files.repositories;
 
 import br.com.rhribeiro25.domain.repositories.EmployeeRepository;
-import br.com.rhribeiro25.domain.valueobjects.Department;
+import br.com.rhribeiro25.domain.models.Department;
 import br.com.rhribeiro25.domain.models.Employee;
 import br.com.rhribeiro25.shared.enums.RoleEnum;
 
@@ -69,9 +69,9 @@ public class EmployeeFileRepository implements EmployeeRepository {
                         employeeList[i] = new Employee();
                         employeeList[i].setName(name);
                         employeeList[i].setRole(RoleEnum.valueOf(role));
-                        employeeList[i].setDepartment(new Department.Builder()
-                                .name(department)
-                                .build());
+//                        employeeList[i].setDepartment(new Department.Builder()
+//                                .name(department)
+//                                .build());
                     }
                 }
             }
@@ -89,4 +89,5 @@ public class EmployeeFileRepository implements EmployeeRepository {
     public Employee findById(Long id) {
         return null;
     }
+
 }

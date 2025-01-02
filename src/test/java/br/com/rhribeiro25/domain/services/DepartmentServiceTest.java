@@ -1,7 +1,8 @@
 package br.com.rhribeiro25.domain.services;
 
 import br.com.rhribeiro25.domain.models.Employee;
-import br.com.rhribeiro25.domain.valueobjects.Department;
+import br.com.rhribeiro25.domain.models.Department;
+import br.com.rhribeiro25.domain.valueobjects.CNPJ;
 import br.com.rhribeiro25.shared.enums.RoleEnum;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -11,17 +12,17 @@ import java.math.BigDecimal;
 public class DepartmentServiceTest {
     @Test
     void shouldCalculateTotalSalary() {
-        Department department = new Department.Builder().name("Engineering").build();
+        Department department = new Department.Builder().cnpj(new CNPJ.Builder().value("123456789").build()).name("Engineering").build();
         department.addEmployee(new Employee.Builder()
                 .name("Alice")
                 .role(RoleEnum.MAIN_MANAGER)
                 .salary(BigDecimal.valueOf(5000))
-                .department(department).build());
+                .departmentCnpj(department.getCnpj().getValue()).build());
         department.addEmployee(new Employee.Builder()
                 .name("Fernando")
                 .role(RoleEnum.MAIN_MANAGER)
                 .salary(BigDecimal.valueOf(6000))
-                .department(department).build());
+                .departmentCnpj(department.getCnpj().getValue()).build());
 
         DepartmentService salaryService = new DepartmentService();
         BigDecimal totalSalary = salaryService.calculateTotalSalary(department);
@@ -31,17 +32,17 @@ public class DepartmentServiceTest {
 
     @Test
     void shouldCalculateAverageSalary() {
-        Department department = new Department.Builder().name("Engineering").build();
+        Department department = new Department.Builder().cnpj(new CNPJ.Builder().value("123456789").build()).name("Engineering").build();
         department.addEmployee(new Employee.Builder()
                 .name("Alice")
                 .role(RoleEnum.MAIN_MANAGER)
                 .salary(BigDecimal.valueOf(5000))
-                .department(department).build());
+                .departmentCnpj(department.getCnpj().getValue()).build());
         department.addEmployee(new Employee.Builder()
                 .name("Fernando")
                 .role(RoleEnum.MAIN_MANAGER)
                 .salary(BigDecimal.valueOf(6000))
-                .department(department).build());
+                .departmentCnpj(department.getCnpj().getValue()).build());
 
         DepartmentService salaryService = new DepartmentService();
         BigDecimal averageSalary = salaryService.calculateAverageSalary(department);
@@ -51,13 +52,13 @@ public class DepartmentServiceTest {
 
     @Test
     void shouldApplySalaryIncreaseBasedOnPerformance() {
-        Department department = new Department.Builder().name("Engineering").build();
+        Department department = new Department.Builder().cnpj(new CNPJ.Builder().value("123456789").build()).name("Engineering").build();
         Employee employee = new Employee.Builder()
                 .name("Fernando")
                 .role(RoleEnum.MAIN_MANAGER)
                 .salary(BigDecimal.valueOf(5000))
                 .performanceRating(5)
-                .department(department).build();
+                .departmentCnpj(department.getCnpj().getValue()).build();
         department.addEmployee(employee);
 
         DepartmentService departmentService = new DepartmentService();
@@ -68,19 +69,19 @@ public class DepartmentServiceTest {
 
     @Test
     void shouldGeneratePerformanceReport() {
-        Department department = new Department.Builder().name("Engineering").build();
+        Department department = new Department.Builder().cnpj(new CNPJ.Builder().value("123456789").build()).name("Engineering").build();
         department.addEmployee(new Employee.Builder()
                 .name("Alice")
                 .role(RoleEnum.MAIN_MANAGER)
                 .salary(BigDecimal.valueOf(5000))
                 .performanceRating(5)
-                .department(department).build());
+                .departmentCnpj(department.getCnpj().getValue()).build());
         department.addEmployee(new Employee.Builder()
                 .name("Fernando")
                 .role(RoleEnum.MAIN_MANAGER)
                 .salary(BigDecimal.valueOf(4000))
                 .performanceRating(3)
-                .department(department).build());
+                .departmentCnpj(department.getCnpj().getValue()).build());
 
         DepartmentService departmentService = new DepartmentService();
         String report = departmentService.generatePerformanceReport(department);

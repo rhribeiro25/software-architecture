@@ -8,11 +8,11 @@
 		<version>3.2.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>br.com.alura</groupId>
-	<artifactId>codechella</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>codechella</name>
-	<description>backend codechella</description>
+	<groupId>br.com.rhribeiro25</groupId>
+	<artifactId>software-architecture</artifactId>
+	<version>1.0.0</version>
+	<name>software-architecture</name>
+	<description>Software Architecture</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

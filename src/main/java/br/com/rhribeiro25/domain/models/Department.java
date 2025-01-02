@@ -1,12 +1,14 @@
-package br.com.rhribeiro25.domain.valueobjects;
+package br.com.rhribeiro25.domain.models;
 
-import br.com.rhribeiro25.domain.models.Employee;
+import br.com.rhribeiro25.domain.valueobjects.CNPJ;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Department {
+
+    private CNPJ cnpj;
 
     private String name;
 
@@ -17,6 +19,7 @@ public class Department {
     }
 
     private Department(Department.Builder builder) {
+        this.cnpj = builder.cnpj;
         this.name = builder.name;
         this.employees = new ArrayList<>();
     }
@@ -35,6 +38,10 @@ public class Department {
 
     public void setEmployees(List<Employee> employees) {
         this.employees = employees;
+    }
+
+    public CNPJ getCnpj() {
+        return cnpj;
     }
 
     public void addEmployee(Employee employee) {
@@ -64,9 +71,16 @@ public class Department {
 
     public static class Builder {
 
+        private CNPJ cnpj;
+
         private String name;
 
         private List<Employee> employees;
+
+        public Department.Builder cnpj(CNPJ cnpj) {
+            this.cnpj = cnpj;
+            return this;
+        }
 
         public Department.Builder name(String name) {
             this.name = name;

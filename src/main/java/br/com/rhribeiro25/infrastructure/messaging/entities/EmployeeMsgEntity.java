@@ -1,13 +1,9 @@
 package br.com.rhribeiro25.infrastructure.messaging.entities;
 
 import br.com.rhribeiro25.shared.enums.RoleEnum;
-import jakarta.persistence.*;
 
-@Entity
-@Table(name = "employee")
 public class EmployeeMsgEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
     private String name;
     private RoleEnum role;

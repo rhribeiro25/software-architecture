@@ -2,7 +2,7 @@ package br.com.rhribeiro25.application.usecases;
 
 import br.com.rhribeiro25.domain.repositories.DepartmentRepository;
 import br.com.rhribeiro25.domain.services.DepartmentService;
-import br.com.rhribeiro25.domain.valueobjects.Department;
+import br.com.rhribeiro25.domain.models.Department;
 
 import java.math.BigDecimal;
 
@@ -16,8 +16,8 @@ public class GetAverageSalary {
         this.salaryService = salaryService;
     }
 
-    public BigDecimal getAverageSalary(String departmentId) {
-        Department department = departmentRepository.findById(departmentId);
+    public BigDecimal getAverageSalary(Long id) {
+        Department department = departmentRepository.findById(id);
         if (department == null) {
             throw new IllegalArgumentException("Department not found");
         }

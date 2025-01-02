@@ -4,41 +4,35 @@ import br.com.rhribeiro25.shared.enums.RoleEnum;
 
 // Dto Response
 public record EmployeeResponse(
-        Long id,
         String name,
         RoleEnum role,
-        DepartmentResponse department
+        String departmentCnpj
 ) {
 
     public static class Builder {
 
-        private Long id;
         private String name;
         private RoleEnum role;
-        private DepartmentResponse department;
+        private String departmentCnpj;
 
-        public Builder id(Long id) {
-            this.id = id;
-            return this;
-        }
 
-        public Builder name(String name) {
+        public EmployeeResponse.Builder name(String name) {
             this.name = name;
             return this;
         }
 
-        public Builder role(RoleEnum role) {
+        public EmployeeResponse.Builder role(RoleEnum role) {
             this.role = role;
             return this;
         }
 
-        public Builder department(DepartmentResponse department) {
-            this.department = department;
+        public EmployeeResponse.Builder departmentCnpj(String department) {
+            this.departmentCnpj = department;
             return this;
         }
 
         public EmployeeResponse build() {
-            return new EmployeeResponse(id, name, role, department);
+            return new EmployeeResponse(name, role, departmentCnpj);
         }
     }
 }

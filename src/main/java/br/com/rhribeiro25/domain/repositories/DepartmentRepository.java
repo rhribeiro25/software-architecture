@@ -1,7 +1,17 @@
 package br.com.rhribeiro25.domain.repositories;
 
-import br.com.rhribeiro25.domain.valueobjects.Department;
+import br.com.rhribeiro25.domain.models.Department;
+
+import java.util.List;
 
 public interface DepartmentRepository {
-    public Department findById(String departmentId);
+    List<Department> findAll();
+
+    Department findById(Long id);
+
+    Department findByCnpj(String cnpj);
+
+    Department save(Department department);
+
+    Department update(Department department, Long id);
 }

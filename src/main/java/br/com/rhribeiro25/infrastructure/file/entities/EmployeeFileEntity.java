@@ -72,6 +72,7 @@ public class EmployeeFileEntity {
         this.performanceRating = performanceRating;
     }
 
+    // Builder Design Pattern simplifies the creation of complex objects.
     public static class Builder {
 
         private Long id;

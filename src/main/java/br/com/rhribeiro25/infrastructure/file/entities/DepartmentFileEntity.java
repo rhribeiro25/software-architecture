@@ -42,6 +42,7 @@ public class DepartmentFileEntity {
                 '}';
     }
 
+    // Builder Design Pattern simplifies the creation of complex objects.
     public static class Builder {
 
         private Long id;

@@ -4,6 +4,9 @@ import br.com.rhribeiro25.domain.models.Employee;
 
 import java.util.List;
 
+// Strategy Design Pattern flexibility to update, reusability across contexts,
+// and scalability for complex cases with new strategies.
+
 public interface EmployeeRepository {
 
     List<Employee> findAll();

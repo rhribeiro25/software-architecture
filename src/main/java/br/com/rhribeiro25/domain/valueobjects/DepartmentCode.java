@@ -11,6 +11,7 @@ public class DepartmentCode {
         this.value = builder.value;
     }
 
+    // Builder Design Pattern simplifies the creation of complex objects.
     public static class Builder {
 
         private String value;

@@ -12,6 +12,7 @@ public record EmployeeRequest(
         String departmentCode
 ) {
 
+    // Builder Design Pattern simplifies the creation of complex objects.
     public static class Builder {
 
         private String name;

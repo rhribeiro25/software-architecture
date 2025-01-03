@@ -71,9 +71,9 @@ curl -X POST 'http://localhost:9090/employees?storage=FILE' \
 }
 ```
 
-## Request for Employee Bulk Creation (File)
+## Request for Employee Bulk Creation (PostgreSql)
 ```bash
-curl -X POST 'http://localhost:9090/employees/bulk'
+curl -X POST 'http://localhost:9090/employees/bulk?storage=POSTGRES''
 ```
 
 ## Response:
@@ -101,6 +101,112 @@ curl -X POST 'http://localhost:9090/employees/bulk'
     },
     {
         "name": "Bernadette McBride",
+        "role": "ASSISTANT_MANAGER",
+        "departmentCode": "HR_01"
+    }
+]
+```
+## Request for Employee Bulk Creation (File)
+```bash
+curl -X POST 'http://localhost:9090/employees/bulk?storage=FILE''
+```
+
+## Response:
+```json
+[
+    {
+        "name": "Máire Ní Bhraonáin",
+        "role": "MAIN_MANAGER",
+        "departmentCode": "FIN_01"
+    },
+    {
+        "name": "Seamus O'Rourke",
+        "role": "TEAM_LEADER",
+        "departmentCode": "FIN_01"
+    },
+    {
+        "name": "Máire Ní Bhraonáin",
+        "role": "MAIN_MANAGER",
+        "departmentCode": "FIN_01"
+    },
+    {
+        "name": "Fionn McCarthy",
+        "role": "TEAM_LEADER",
+        "departmentCode": "MKT_01"
+    },
+    {
+        "name": "Bernadette McBride",
+        "role": "ASSISTANT_MANAGER",
+        "departmentCode": "HR_01"
+    }
+]
+
+```
+## Request for find Employee list (PostgreSql)
+```bash
+curl -X GET 'http://localhost:9090/employees?storage=POSTGRES''
+```
+
+## Response:
+```json
+[
+    {
+        "name": "Aoife Dunne",
+        "role": "ASSISTANT_MANAGER",
+        "departmentCode": "HR_01"
+    },
+    {
+        "name": "Bernadette McBride",
+        "role": "ASSISTANT_MANAGER",
+        "departmentCode": "SAL_01"
+    },
+    {
+        "name": "Brian O'Mahony",
+        "role": "ASSISTANT_MANAGER",
+        "departmentCode": "SAL_01"
+    },
+    {
+        "name": "Brian O'Mahony",
+        "role": "TEAM_LEADER",
+        "departmentCode": "MKT_01"
+    },
+    {
+        "name": "Ciara Fitzpatrick",
+        "role": "ASSISTANT_MANAGER",
+        "departmentCode": "HR_01"
+    }
+]
+```
+## Request for Employee Bulk Creation (File)
+```bash
+curl -X GET 'http://localhost:9090/employees?storage=FILE''
+```
+
+## Response:
+```json
+[
+    {
+        "name": "Aoife Dunne",
+        "role": "ASSISTANT_MANAGER",
+        "departmentCode": "HR_01"
+    },
+    {
+        "name": "Bernadette McBride",
+        "role": "ASSISTANT_MANAGER",
+        "departmentCode": "SAL_01"
+    },
+    {
+        "name": "Brian O'Mahony",
+        "role": "ASSISTANT_MANAGER",
+        "departmentCode": "SAL_01"
+    },
+    {
+        "name": "Brian O'Mahony",
+        "role": "TEAM_LEADER",
+        "departmentCode": "MKT_01"
+    },
+    {
+        "name": "Ciara Fitzpatrick",
         "role": "ASSISTANT_MANAGER",
         "departmentCode": "HR_01"
     }

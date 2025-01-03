@@ -9,7 +9,7 @@ This project combines a wide range of software engineering concepts to create an
 - Integration with PostgreSQL ensures reliable, scalable data storage, while REST APIs provide a seamless interface for communication.
 - Following SOLID principles helps in creating flexible and extensible systems, making the codebase easy to maintain and extend over time.
 - Builder Design Pattern simplifies the creation of complex objects.
-- Strategy Design Pattern flexibility to update, reusability across contexts, and scalability for complex cases with new strategies.
+- Strategy Design Pattern offers flexibility to update, reusability across contexts, and scalability for complex cases with new strategies.
 
 These technologies work together to build a robust and scalable application, following industry best practices for software development.
 

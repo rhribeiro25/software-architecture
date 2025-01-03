@@ -11,6 +11,9 @@ This project combines a wide range of software engineering concepts to create an
 - Builder Design Pattern simplifies the creation of complex objects.
 - Strategy Design Pattern offers flexibility to update, reusability across contexts, and scalability for complex cases with new strategies.
 
+Referencies:
+- https://refactoring.guru/design-patterns
+  
 These technologies work together to build a robust and scalable application, following industry best practices for software development.
 
 # Technical Instructions

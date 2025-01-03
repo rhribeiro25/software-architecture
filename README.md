@@ -142,7 +142,7 @@ curl -X POST 'http://localhost:9090/employees/bulk?storage=FILE''
 ]
 
 ```
-## Request to find Employee list (PostgreSql)
+## Request to find sorted Employee list (PostgreSql)
 ```bash
 curl -X GET 'http://localhost:9090/employees?storage=POSTGRES''
 ```
@@ -177,7 +177,7 @@ curl -X GET 'http://localhost:9090/employees?storage=POSTGRES''
     }
 ]
 ```
-## Request to find Employee list (File)
+## Request to find sorted Employee list (File)
 ```bash
 curl -X GET 'http://localhost:9090/employees?storage=FILE''
 ```

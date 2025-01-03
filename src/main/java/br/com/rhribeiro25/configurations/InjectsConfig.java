@@ -14,6 +14,7 @@ import br.com.rhribeiro25.infrastructure.file.repositories.EmployeeFileRepositor
 import br.com.rhribeiro25.infrastructure.messaging.mappers.EmployeeMsgMapper;
 import br.com.rhribeiro25.interfaces.mappers.DepartmentIntMapper;
 import br.com.rhribeiro25.interfaces.mappers.EmployeeIntMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -69,6 +70,11 @@ public class InjectsConfig {
     }
 
     @Bean
+    CreateRandomEmployee createRandomEmployeeBean(@Qualifier("employeeDbRepositoryBean") EmployeeRepository repository, EmployeeAppMapper mapper){
+        return new CreateRandomEmployee(repository, mapper);
+    }
+
+    @Bean
     WriteEmployee writeEmployeeBean(@Qualifier("employeeFileRepositoryBean") EmployeeRepository repository, EmployeeAppMapper mapper){
         return new WriteEmployee(repository, mapper);
     }
@@ -81,6 +87,16 @@ public class InjectsConfig {
     @Bean
     ListEmployee listEmployeeBean(@Qualifier("employeeDbRepositoryBean") EmployeeRepository repository, EmployeeAppMapper mapper){
         return new ListEmployee(repository, mapper);
+    }
+
+    @Bean
+    ReadEmployee readEmployeeBean(@Qualifier("employeeFileRepositoryBean") EmployeeRepository repository, EmployeeAppMapper mapper, SortedEmployee sorted){
+        return new ReadEmployee(repository, mapper, sorted);
+    }
+
+    @Bean
+    SortedEmployee sortedEmployeeBean(){
+        return new SortedEmployee();
     }
 
     @Bean
@@ -99,8 +115,8 @@ public class InjectsConfig {
     }
 
     @Bean(name = "employeeFileRepositoryBean")
-    EmployeeRepository employeeFileRepositoryBean(EmployeeFileMapper mapper){
-        return new EmployeeFileRepository(mapper);
+    EmployeeRepository employeeFileRepositoryBean(EmployeeFileMapper mapper, ObjectMapper objectMapper){
+        return new EmployeeFileRepository(mapper, objectMapper);
     }
 
     @Bean(name = "departmentDbRepositoryBean")

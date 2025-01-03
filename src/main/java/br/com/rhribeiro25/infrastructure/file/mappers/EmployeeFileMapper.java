@@ -1,9 +1,13 @@
 package br.com.rhribeiro25.infrastructure.file.mappers;
 
+import br.com.rhribeiro25.application.dtos.EmployeeResponse;
 import br.com.rhribeiro25.domain.models.Employee;
 import br.com.rhribeiro25.infrastructure.file.entities.DepartmentFileEntity;
 import br.com.rhribeiro25.infrastructure.file.entities.EmployeeFileEntity;
 import br.com.rhribeiro25.shared.enums.DepartmentCodeEnum;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class EmployeeFileMapper {
 
@@ -26,5 +30,11 @@ public class EmployeeFileMapper {
                 .name(employee.getName())
                 .role(employee.getRole())
                 .build();
+    }
+
+    public List<Employee> toDomainList(List<EmployeeFileEntity> employees) {
+        return employees.stream()
+                .map(this::toDomain)
+                .collect(Collectors.toList());
     }
 }

@@ -6,26 +6,20 @@ import java.util.Arrays;
 
 public class SortedEmployee {
 
-    public void mergeSort(Employee[] employeeList) {
+    public Employee[] mergeSort(Employee[] employeeList) {
 
-        if (employeeList.length < 2) {
-            return;
-        }
-
+        if (employeeList.length < 2) return this.bubbleSort(employeeList);
         int mid = employeeList.length / 2;
         Employee[] left = Arrays.copyOfRange(employeeList, 0, mid);
         Employee[] right = Arrays.copyOfRange(employeeList, mid, employeeList.length);
-
         mergeSort(left);
         mergeSort(right);
-
-        merge(employeeList, left, right);
+        return merge(employeeList, left, right);
     }
 
-    private void merge(Employee[] employeeList, Employee[] left, Employee[] right) {
+    private Employee[] merge(Employee[] employeeList, Employee[] left, Employee[] right) {
 
         int i = 0, j = 0, k = 0;
-
         while (i < left.length && j < right.length) {
             if (left[i].getName().compareTo(right[j].getName()) <= 0) {
                 employeeList[k++] = left[i++];
@@ -33,60 +27,44 @@ public class SortedEmployee {
                 employeeList[k++] = right[j++];
             }
         }
-
         while (i < left.length) {
             employeeList[k++] = left[i++];
         }
         while (j < right.length) {
             employeeList[k++] = right[j++];
         }
+        return employeeList;
     }
 
-    public void bubbleSort(Employee[] employeeList) {
+    public Employee[] bubbleSort(Employee[] employeeList) {
 
         int length = employeeList.length - 1;
-
         for (int i = 0; i < length - 1; i++) {
-
             for (int j = 0; j < length - i - 1; j++) {
-
                 if (employeeList[j].getName().compareTo(employeeList[j + 1].getName()) > 0) {
-
                     Employee temp = employeeList[j];
-
                     employeeList[j] = employeeList[j + 1];
-
                     employeeList[j + 1] = temp;
-
                 }
             }
         }
+        return employeeList;
     }
 
-    public void selectionSort(Employee[] employeeList) {
+    public Employee[] selectionSort(Employee[] employeeList) {
     
         int length = employeeList.length -1;
-
         for (int i = 0; i < length - 1; i++) {
-           
             int minPosition = i;
-            
             for (int j = i + 1; j < length; j++) {
-
                 if (employeeList[j].getName().compareTo(employeeList[j + 1].getName()) > 0) {
-
                     minPosition = j;
-                    
                 }
             }
-
             Employee tempPage = employeeList[i];
-
             employeeList[i] = employeeList[minPosition];
-
             employeeList[minPosition] = tempPage;
-
-            
         }
+        return employeeList;
     }
 }

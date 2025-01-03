@@ -2,8 +2,10 @@ package br.com.rhribeiro25.application.usecases;
 
 import br.com.rhribeiro25.application.dtos.EmployeeResponse;
 import br.com.rhribeiro25.application.mappers.EmployeeAppMapper;
+import br.com.rhribeiro25.domain.models.Employee;
 import br.com.rhribeiro25.domain.repositories.EmployeeRepository;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class ListEmployee {
@@ -17,6 +19,8 @@ public class ListEmployee {
     }
 
     public List<EmployeeResponse> getAll(){
-        return mapper.toDtoList(this.repository.findAll());
+        List<Employee> employeeListSorted = this.repository.findAll().stream()
+                .sorted(Comparator.comparing(Employee::getName)).toList();
+        return mapper.toDtoList(employeeListSorted);
     }
 }

@@ -7,6 +7,7 @@ import br.com.rhribeiro25.infrastructure.database.entities.EmployeeDbEntity;
 import br.com.rhribeiro25.infrastructure.database.mappers.EmployeeDbMapper;
 import br.com.rhribeiro25.infrastructure.database.repositories.jpa.DepartmentJpaRepository;
 import br.com.rhribeiro25.infrastructure.database.repositories.jpa.EmployeeJpaRepository;
+import br.com.rhribeiro25.shared.enums.DepartmentCodeEnum;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,8 +27,15 @@ public class EmployeeDbRepository implements EmployeeRepository {
     @Override
     public Employee save(Employee employee) {
         Optional<DepartmentDbEntity> department = departmentJpaRepository.findByCode(employee.getDepartmentCode());
+        if(department.isEmpty()){
+            DepartmentDbEntity entity = new DepartmentDbEntity.Builder()
+                    .code(employee.getDepartmentCode())
+                    .name(DepartmentCodeEnum.valueOf(employee.getDepartmentCode()).getDescription())
+                    .build();
+            department = Optional.of(departmentJpaRepository.save(entity));
+        }
         EmployeeDbEntity entity = mapper.toEntity(employee);
-        entity.setDepartment(department.orElseThrow(() -> new RuntimeException("Department not found with DepartmentCode: " + employee.getDepartmentCode())));
+        entity.setDepartment(department.get());
         employeeJpaRepository.save(entity);
         return mapper.toDomain(entity);
     }

@@ -1,10 +1,7 @@
 package br.com.rhribeiro25.interfaces.controller;
 
 import br.com.rhribeiro25.application.dtos.EmployeeResponse;
-import br.com.rhribeiro25.application.usecases.CreateEmployee;
-import br.com.rhribeiro25.application.usecases.ListEmployee;
-import br.com.rhribeiro25.application.usecases.WriteEmployee;
-import br.com.rhribeiro25.application.usecases.WriteRandomEmployee;
+import br.com.rhribeiro25.application.usecases.*;
 import br.com.rhribeiro25.interfaces.dtos.EmployeeRequest;
 import br.com.rhribeiro25.interfaces.mappers.EmployeeIntMapper;
 import br.com.rhribeiro25.shared.enums.StorageEnum;
@@ -18,16 +15,20 @@ import java.util.List;
 public class EmployeeController {
 
     private final CreateEmployee createEmployee;
+    private final CreateRandomEmployee createRandomEmployee;
     private final WriteEmployee writeEmployee;
     private final WriteRandomEmployee writeRandomEmployee;
     private final ListEmployee listEmployee;
+    private final ReadEmployee readEmployee;
     private final EmployeeIntMapper mapper;
 
-    public EmployeeController(CreateEmployee createEmployee, WriteEmployee writeEmployee, WriteRandomEmployee writeRandomEmployee, ListEmployee listEmployee, EmployeeIntMapper mapper) {
+    public EmployeeController(CreateEmployee createEmployee, CreateRandomEmployee createRandomEmployee, WriteEmployee writeEmployee, WriteRandomEmployee writeRandomEmployee, ListEmployee listEmployee, ReadEmployee readEmployee, EmployeeIntMapper mapper) {
         this.createEmployee = createEmployee;
+        this.createRandomEmployee = createRandomEmployee;
         this.writeEmployee = writeEmployee;
         this.writeRandomEmployee = writeRandomEmployee;
         this.listEmployee = listEmployee;
+        this.readEmployee = readEmployee;
         this.mapper = mapper;
     }
 
@@ -41,12 +42,20 @@ public class EmployeeController {
     }
 
     @PostMapping("/bulk")
-    public List<EmployeeResponse> createList() {
-        return writeRandomEmployee.writeRandomly();
+    public List<EmployeeResponse> createBulk(@RequestParam StorageEnum storage) {
+        return switch (storage) {
+            case POSTGRES -> createRandomEmployee.createRandomly();
+            case FILE -> writeRandomEmployee.writeRandomly();
+            default -> new ArrayList<>();
+        };
     }
 
     @GetMapping
-    public List<EmployeeResponse> getAll() {
-        return listEmployee.getAll();
+    public List<EmployeeResponse> getAllSorted(@RequestParam StorageEnum storage) {
+        return switch (storage) {
+            case POSTGRES -> listEmployee.getAll();
+            case FILE -> readEmployee.readAll();
+            default -> new ArrayList<>();
+        };
     }
 }

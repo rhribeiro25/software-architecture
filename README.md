@@ -14,7 +14,7 @@ These technologies work together to build a robust and scalable application, fol
 
 # Technical Instructions
 
-## Request for Department Creation (PostgreSql)
+## Request to create Department (PostgreSql)
 ```bash
 curl -X POST 'http://localhost:9090/departments' \
 --header 'Content-Type: application/json' \
@@ -29,7 +29,7 @@ curl -X POST 'http://localhost:9090/departments' \
     "code": "FIN_01"
 }
 ```
-## Request for Employee Creation (PostgreSql)
+## Request to create Employee (PostgreSql)
 ```bash
 curl -X POST 'http://localhost:9090/employees?storage=POSTGRES' \
 --header 'Content-Type: application/json' \
@@ -50,7 +50,7 @@ curl -X POST 'http://localhost:9090/employees?storage=POSTGRES' \
 }
 ```
 
-## Request for Employee Creation (File)
+## Request to create Employee (File)
 ```bash
 curl -X POST 'http://localhost:9090/employees?storage=FILE' \
 --header 'Content-Type: application/json' \
@@ -71,9 +71,9 @@ curl -X POST 'http://localhost:9090/employees?storage=FILE' \
 }
 ```
 
-## Request for Employee Bulk Creation (File)
+## Request to create Employee Bulk (PostgreSql)
 ```bash
-curl -X POST 'http://localhost:9090/employees/bulk'
+curl -X POST 'http://localhost:9090/employees/bulk?storage=POSTGRES''
 ```
 
 ## Response:
@@ -101,6 +101,112 @@ curl -X POST 'http://localhost:9090/employees/bulk'
     },
     {
         "name": "Bernadette McBride",
+        "role": "ASSISTANT_MANAGER",
+        "departmentCode": "HR_01"
+    }
+]
+```
+## Request to create Employee Bulk (File)
+```bash
+curl -X POST 'http://localhost:9090/employees/bulk?storage=FILE''
+```
+
+## Response:
+```json
+[
+    {
+        "name": "Máire Ní Bhraonáin",
+        "role": "MAIN_MANAGER",
+        "departmentCode": "FIN_01"
+    },
+    {
+        "name": "Seamus O'Rourke",
+        "role": "TEAM_LEADER",
+        "departmentCode": "FIN_01"
+    },
+    {
+        "name": "Máire Ní Bhraonáin",
+        "role": "MAIN_MANAGER",
+        "departmentCode": "FIN_01"
+    },
+    {
+        "name": "Fionn McCarthy",
+        "role": "TEAM_LEADER",
+        "departmentCode": "MKT_01"
+    },
+    {
+        "name": "Bernadette McBride",
+        "role": "ASSISTANT_MANAGER",
+        "departmentCode": "HR_01"
+    }
+]
+
+```
+## Request to find sorted Employee list (PostgreSql)
+```bash
+curl -X GET 'http://localhost:9090/employees?storage=POSTGRES''
+```
+
+## Response:
+```json
+[
+    {
+        "name": "Aoife Dunne",
+        "role": "ASSISTANT_MANAGER",
+        "departmentCode": "HR_01"
+    },
+    {
+        "name": "Bernadette McBride",
+        "role": "ASSISTANT_MANAGER",
+        "departmentCode": "SAL_01"
+    },
+    {
+        "name": "Brian O'Mahony",
+        "role": "ASSISTANT_MANAGER",
+        "departmentCode": "SAL_01"
+    },
+    {
+        "name": "Brian O'Mahony",
+        "role": "TEAM_LEADER",
+        "departmentCode": "MKT_01"
+    },
+    {
+        "name": "Ciara Fitzpatrick",
+        "role": "ASSISTANT_MANAGER",
+        "departmentCode": "HR_01"
+    }
+]
+```
+## Request to find sorted Employee list (File)
+```bash
+curl -X GET 'http://localhost:9090/employees?storage=FILE''
+```
+
+## Response:
+```json
+[
+    {
+        "name": "Aoife Dunne",
+        "role": "ASSISTANT_MANAGER",
+        "departmentCode": "HR_01"
+    },
+    {
+        "name": "Bernadette McBride",
+        "role": "ASSISTANT_MANAGER",
+        "departmentCode": "SAL_01"
+    },
+    {
+        "name": "Brian O'Mahony",
+        "role": "ASSISTANT_MANAGER",
+        "departmentCode": "SAL_01"
+    },
+    {
+        "name": "Brian O'Mahony",
+        "role": "TEAM_LEADER",
+        "departmentCode": "MKT_01"
+    },
+    {
+        "name": "Ciara Fitzpatrick",
         "role": "ASSISTANT_MANAGER",
         "departmentCode": "HR_01"
     }

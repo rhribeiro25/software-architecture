@@ -2,7 +2,7 @@ package br.com.rhribeiro25.interfaces.controller;
 
 import br.com.rhribeiro25.application.dtos.DepartmentResponse;
 import br.com.rhribeiro25.application.usecases.CreateDepartment;
-import br.com.rhribeiro25.application.usecases.ListDepartment;
+import br.com.rhribeiro25.application.usecases.FindDepartmentList;
 import br.com.rhribeiro25.interfaces.dtos.DepartmentRequest;
 import br.com.rhribeiro25.interfaces.mappers.DepartmentIntMapper;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +14,12 @@ import java.util.List;
 public class DepartmentController {
 
     private final CreateDepartment createDepartment;
-    private final ListDepartment listDepartment;
+    private final FindDepartmentList findDepartmentList;
     private final DepartmentIntMapper mapper;
 
-    public DepartmentController(CreateDepartment createDepartment, ListDepartment listDepartment, DepartmentIntMapper mapper) {
+    public DepartmentController(CreateDepartment createDepartment, FindDepartmentList findDepartmentList, DepartmentIntMapper mapper) {
         this.createDepartment = createDepartment;
-        this.listDepartment = listDepartment;
+        this.findDepartmentList = findDepartmentList;
         this.mapper = mapper;
     }
 
@@ -31,6 +31,6 @@ public class DepartmentController {
 
     @GetMapping
     public List<DepartmentResponse> getAll() {
-        return listDepartment.getAll();
+        return findDepartmentList.getAll();
     }
 }

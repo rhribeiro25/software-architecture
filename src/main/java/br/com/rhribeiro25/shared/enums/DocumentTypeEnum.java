@@ -1,15 +1,15 @@
 package br.com.rhribeiro25.shared.enums;
 
-public enum RoleEnum {
+public enum DocumentTypeEnum {
 
-    MAIN_MANAGER(1, "Main Manager"),
-    ASSISTANT_MANAGER(2, "Assistant Manager"),
-    TEAM_LEADER(3, "Team Leader");
+    CPF(1, "Individual registration"),
+    RG(2, "General Register"),
+    PASSPORT(3, "Passport");
 
     private final int key;
     private final String description;
 
-    RoleEnum(int key, String description) {
+    DocumentTypeEnum(int key, String description) {
         this.key = key;
         this.description = description;
     }
@@ -22,8 +22,8 @@ public enum RoleEnum {
         return description;
     }
 
-    public static RoleEnum fromKey(int key) {
-        for (RoleEnum type: RoleEnum.values()) {
+    public static br.com.rhribeiro25.shared.enums.RoleEnum fromKey(int key) {
+        for (br.com.rhribeiro25.shared.enums.RoleEnum type: br.com.rhribeiro25.shared.enums.RoleEnum.values()) {
             if (type.getKey() == key) {
                 return type;
             }

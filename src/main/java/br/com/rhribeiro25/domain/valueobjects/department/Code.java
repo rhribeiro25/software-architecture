@@ -1,13 +1,13 @@
-package br.com.rhribeiro25.domain.valueobjects;
+package br.com.rhribeiro25.domain.valueobjects.department;
 
-public class DepartmentCode {
+public class Code {
     private String value;
 
     public String getValue() {
         return value;
     }
 
-    private DepartmentCode(DepartmentCode.Builder builder) {
+    private Code(Code.Builder builder) {
         this.value = builder.value;
     }
 
@@ -16,13 +16,13 @@ public class DepartmentCode {
 
         private String value;
 
-        public DepartmentCode.Builder value(String value) {
+        public Code.Builder value(String value) {
             this.value = value;
             return this;
         }
 
-        public DepartmentCode build() {
-            return new DepartmentCode(this);
+        public Code build() {
+            return new Code(this);
         }
     }
 }

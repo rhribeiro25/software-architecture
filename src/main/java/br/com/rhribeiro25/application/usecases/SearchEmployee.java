@@ -2,6 +2,8 @@ package br.com.rhribeiro25.application.usecases;
 
 import br.com.rhribeiro25.domain.models.Employee;
 
+import java.util.Comparator;
+
 public class SearchEmployee {
 
     private final SortedEmployee sortedEmployee;
@@ -11,9 +13,9 @@ public class SearchEmployee {
     }
 
 
-    public Employee binarySearchEmployee(Employee[] employeeList, String name) {
+    public Employee binarySearchEmployee(Employee[] employeeList, String attribute, Comparator<Employee> comparator) {
 
-        sortedEmployee.mergeSort(employeeList);
+        sortedEmployee.mergeSort(employeeList, comparator);
 
         int low = 0;
         int high = employeeList.length - 1;
@@ -21,7 +23,7 @@ public class SearchEmployee {
         while (low <= high) {
             int mid = low + (high - low) / 2;
 
-            int comparison = employeeList[mid].getName().trim().compareTo(name.trim());
+            int comparison = employeeList[mid].getDocument().getValue().trim().compareTo(attribute.trim());
 
             if (comparison == 0) {
                 return employeeList[mid];

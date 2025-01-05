@@ -46,6 +46,12 @@ public class EmployeeDbRepository implements EmployeeRepository {
     }
 
     @Override
+    public Employee findByDocument(String document) {
+        EmployeeDbEntity entity =  employeeJpaRepository.findByDocument(document).orElseThrow(() -> new RuntimeException("Employee not found with document: " + document));
+        return mapper.toDomain(entity);
+    }
+
+    @Override
     public List<Employee> findAll() {
         return employeeJpaRepository.findAll().stream()
                 .map(mapper::toDomain)

@@ -6,12 +6,12 @@ import br.com.rhribeiro25.domain.repositories.DepartmentRepository;
 
 import java.util.List;
 
-public class ListDepartment {
+public class FindDepartmentList {
 
     private final DepartmentRepository repository;
     private final DepartmentAppMapper mapper;
 
-    public ListDepartment(DepartmentRepository repository, DepartmentAppMapper mapper) {
+    public FindDepartmentList(DepartmentRepository repository, DepartmentAppMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }

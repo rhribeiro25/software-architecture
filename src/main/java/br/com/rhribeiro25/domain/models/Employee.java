@@ -1,11 +1,13 @@
 package br.com.rhribeiro25.domain.models;
 
+import br.com.rhribeiro25.domain.valueobjects.employee.Document;
 import br.com.rhribeiro25.shared.enums.RoleEnum;
 
 import java.math.BigDecimal;
 
 public class Employee {
 
+    private Document document;
     private String name;
     private RoleEnum role;
     private int performanceRating; // 1 a 5, onde 5 é o melhor desempenho
@@ -15,11 +17,20 @@ public class Employee {
     public Employee() {}
 
     private Employee(Builder builder) {
+        this.document = builder.document;
         this.name = builder.name;
         this.role = builder.role;
         this.departmentCode = builder.departmentCode;
         this.salary = builder.salary;
         this.performanceRating = builder.performanceRating;
+    }
+
+    public Document getDocument() {
+        return document;
+    }
+
+    public void setDocument(Document document) {
+        this.document = document;
     }
 
     public String getName() {
@@ -38,12 +49,12 @@ public class Employee {
         this.role = role;
     }
 
-    public String getDepartmentCode() {
-        return departmentCode;
+    public int getPerformanceRating() {
+        return performanceRating;
     }
 
-    public void setDepartmentCode(String departmentCode) {
-        this.departmentCode = departmentCode;
+    public void setPerformanceRating(int performanceRating) {
+        this.performanceRating = performanceRating;
     }
 
     public BigDecimal getSalary() {
@@ -54,12 +65,12 @@ public class Employee {
         this.salary = salary;
     }
 
-    public int getPerformanceRating() {
-        return performanceRating;
+    public String getDepartmentCode() {
+        return departmentCode;
     }
 
-    public void setPerformanceRating(int performanceRating) {
-        this.performanceRating = performanceRating;
+    public void setDepartmentCode(String departmentCode) {
+        this.departmentCode = departmentCode;
     }
 
     // Método para aplicar aumento salarial baseado no desempenho
@@ -75,9 +86,14 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "\t\t\t\t\tName: " + this.getName() + "\n" +
-                "\t\t\t\t\tRole: " + this.getRole().getDescription() + "\n" +
-                "\t\t\t\t\tDepartment: " + this.getDepartmentCode();
+        return "Employee{" +
+                "document=" + document +
+                ", name='" + name + '\'' +
+                ", role=" + role +
+                ", performanceRating=" + performanceRating +
+                ", salary=" + salary +
+                ", departmentCode='" + departmentCode + '\'' +
+                '}';
     }
 
     public String contentToFile() {
@@ -87,20 +103,23 @@ public class Employee {
     }
 
     public String toStringInLine() {
-        //return this.getName() + "," +
-        //        this.getRole().getDescription() + "," +
-        //        DepartmentCodeEnum.valueOf(this.getDepartmentId().getName()).getDescription();
         return "";
     }
 
     // Builder Design Pattern simplifies the creation of complex objects.
     public static class Builder {
 
+        private Document document;
         private String name;
         private RoleEnum role;
         private BigDecimal salary;
         private int performanceRating;
         private String departmentCode;
+
+        public Builder document(Document document) {
+            this.document = document;
+            return this;
+        }
 
         public Builder name(String name) {
             this.name = name;

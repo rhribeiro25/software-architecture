@@ -7,7 +7,7 @@ import br.com.rhribeiro25.infrastructure.file.enums.MenuEnum;
 import br.com.rhribeiro25.infrastructure.file.enums.SearchEnum;
 import br.com.rhribeiro25.interfaces.controller.PromptController;
 import br.com.rhribeiro25.application.usecases.WriteEmployee;
-import br.com.rhribeiro25.application.usecases.WriteRandomEmployee;
+import br.com.rhribeiro25.application.usecases.WriteRandomMockEmployee;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.io.IOException;
@@ -19,8 +19,8 @@ public class SoftwareArchitecturePromptApplication {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(InjectsConfig.class);
 
         WriteEmployee writeEmployee = context.getBean(WriteEmployee.class);
-        WriteRandomEmployee writeRandomEmployee = context.getBean(WriteRandomEmployee.class);
-        ReadEmployee readEmployee = context.getBean(ReadEmployee.class);
+        WriteRandomMockEmployee writeRandomMockEmployee = context.getBean(WriteRandomMockEmployee.class);
+        ReadEmployeeListUsingSortingAlgorithm readEmployeeListUsingSortingAlgorithm = context.getBean(ReadEmployeeListUsingSortingAlgorithm.class);
         PromptController inputService = context.getBean(PromptController.class);
         SearchEmployee searchService = context.getBean(SearchEmployee.class);
         SortedEmployee sortedEmployeeService = context.getBean(SortedEmployee.class);
@@ -32,7 +32,7 @@ public class SoftwareArchitecturePromptApplication {
 
         String pathFile = inputService.getPathInput("Please, insert the file name: ");
 
-        Employee[] employeeArray = readEmployee.readAll().toArray(new Employee[0]);
+        Employee[] employeeArray = readEmployeeListUsingSortingAlgorithm.readAll().toArray(new Employee[0]);
 
 
         int optionInt;
@@ -60,7 +60,7 @@ public class SoftwareArchitecturePromptApplication {
                     System.out.println("*************************************************************");
 
                     if (employeeArray != null && employeeArray.length > 0) {
-                        sortedEmployeeService.mergeSort(employeeArray);
+//                        sortedEmployeeService.mergeSort(employeeArray);
                         inputService.printFirstTwenty(employeeArray);
                     } else {
                         System.out.println("Employee list is empty or not loaded.");
@@ -95,12 +95,12 @@ public class SoftwareArchitecturePromptApplication {
                             // Search by Name
                             String employeeName = inputService.getNameInput("Insert the Employee Name: ").trim();
                             System.out.println("*************************************************************");
-                            Employee foundEmployee = searchService.binarySearchEmployee(employeeArray, employeeName);
-                            if (foundEmployee != null) {
-                                System.out.println(foundEmployee);
-                            } else {
-                                System.out.println("Employee not found.");
-                            }
+//                            Employee foundEmployee = searchService.binarySearchEmployee(employeeArray, employeeName);
+//                            if (foundEmployee != null) {
+//                                System.out.println(foundEmployee);
+//                            } else {
+//                                System.out.println("Employee not found.");
+//                            }
                             break;
 
                         case DEPARTMENT:
@@ -153,7 +153,7 @@ public class SoftwareArchitecturePromptApplication {
                     System.out.println("*************************************************************");
 //                    System.out.println(writeEmployee.simpleWrite(pathFile));
 
-                    employeeArray = readEmployee.readAll().toArray(new Employee[0]);
+                    employeeArray = readEmployeeListUsingSortingAlgorithm.readAll().toArray(new Employee[0]);
 
                     System.out.println("*************************************************************");
                     System.out.println("\t\t\t\t Employee stored successfully!");
@@ -166,9 +166,9 @@ public class SoftwareArchitecturePromptApplication {
                     System.out.println("*************************************************************");
                     System.out.println("\t\t\t\t Generating a random Employee");
                     System.out.println("*************************************************************");
-                    writeRandomEmployee.writeRandomly();
+                    writeRandomMockEmployee.writeRandomly();
 
-                    employeeArray = readEmployee.readAll().toArray(new Employee[0]);
+                    employeeArray = readEmployeeListUsingSortingAlgorithm.readAll().toArray(new Employee[0]);
 
                     inputService.printRandoms(employeeArray);
 

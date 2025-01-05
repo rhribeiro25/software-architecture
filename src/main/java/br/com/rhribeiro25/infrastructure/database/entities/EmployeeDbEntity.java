@@ -1,12 +1,16 @@
 package br.com.rhribeiro25.infrastructure.database.entities;
 
+import br.com.rhribeiro25.shared.enums.DocumentTypeEnum;
 import br.com.rhribeiro25.shared.enums.RoleEnum;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "employee")
+@Table(
+        name = "employee",
+        uniqueConstraints = @UniqueConstraint(name = "employee_document_type_and_value_uk", columnNames = {"document_type", "document"})
+)
 public class EmployeeDbEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,6 +18,13 @@ public class EmployeeDbEntity {
 
     @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private DocumentTypeEnum documentType;
+
+    @Column(nullable = false)
+    private String document;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -33,6 +44,8 @@ public class EmployeeDbEntity {
 
     public EmployeeDbEntity(Builder builder) {
         this.id = builder.id;
+        this.documentType = builder.documentType;
+        this.document = builder.document;
         this.name = builder.name;
         this.role = builder.role;
         this.salary = builder.salary;
@@ -43,12 +56,32 @@ public class EmployeeDbEntity {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public DocumentTypeEnum getDocumentType() {
+        return documentType;
+    }
+
+    public void setDocumentType(DocumentTypeEnum documentType) {
+        this.documentType = documentType;
+    }
+
+    public String getDocument() {
+        return document;
+    }
+
+    public void setDocument(String document) {
+        this.document = document;
     }
 
     public RoleEnum getRole() {
@@ -59,12 +92,12 @@ public class EmployeeDbEntity {
         this.role = role;
     }
 
-    public DepartmentDbEntity getDepartment() {
-        return department;
+    public int getPerformanceRating() {
+        return performanceRating;
     }
 
-    public void setDepartment(DepartmentDbEntity departmentDbEntity) {
-        this.department = departmentDbEntity;
+    public void setPerformanceRating(int performanceRating) {
+        this.performanceRating = performanceRating;
     }
 
     public BigDecimal getSalary() {
@@ -75,18 +108,20 @@ public class EmployeeDbEntity {
         this.salary = salary;
     }
 
-    public int getPerformanceRating() {
-        return performanceRating;
+    public DepartmentDbEntity getDepartment() {
+        return department;
     }
 
-    public void setPerformanceRating(int performanceRating) {
-        this.performanceRating = performanceRating;
+    public void setDepartment(DepartmentDbEntity department) {
+        this.department = department;
     }
 
     // Builder Design Pattern simplifies the creation of complex objects.
     public static class Builder {
 
         private Long id;
+        private DocumentTypeEnum documentType;
+        private String document;
         private String name;
         private RoleEnum role;
         private BigDecimal salary;
@@ -94,6 +129,16 @@ public class EmployeeDbEntity {
 
         public EmployeeDbEntity.Builder id(Long id) {
             this.id = id;
+            return this;
+        }
+
+        public EmployeeDbEntity.Builder documentType(DocumentTypeEnum documentType) {
+            this.documentType = documentType;
+            return this;
+        }
+
+        public EmployeeDbEntity.Builder document(String document) {
+            this.document = document;
             return this;
         }
 

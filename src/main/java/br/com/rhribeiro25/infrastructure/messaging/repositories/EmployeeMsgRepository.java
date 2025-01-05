@@ -18,6 +18,11 @@ public class EmployeeMsgRepository implements EmployeeRepository {
     }
 
     @Override
+    public Employee findByDocument(String document) {
+        return null;
+    }
+
+    @Override
     public List<Employee> findAll() {
         return null;
     }

@@ -70,8 +70,8 @@ public class InjectsConfig {
     }
 
     @Bean
-    CreateRandomEmployee createRandomEmployeeBean(@Qualifier("employeeDbRepositoryBean") EmployeeRepository repository, EmployeeAppMapper mapper){
-        return new CreateRandomEmployee(repository, mapper);
+    CreateRandomMockEmployee createRandomMockEmployeeBean(@Qualifier("employeeDbRepositoryBean") EmployeeRepository repository, EmployeeAppMapper mapper){
+        return new CreateRandomMockEmployee(repository, mapper);
     }
 
     @Bean
@@ -80,18 +80,28 @@ public class InjectsConfig {
     }
 
     @Bean
-    WriteRandomEmployee writeRandomEmployeeBean(@Qualifier("employeeFileRepositoryBean") EmployeeRepository repository, EmployeeAppMapper mapper){
-        return new WriteRandomEmployee(repository, mapper);
+    WriteRandomMockEmployee writeRandomMockEmployeeBean(@Qualifier("employeeFileRepositoryBean") EmployeeRepository repository, EmployeeAppMapper mapper){
+        return new WriteRandomMockEmployee(repository, mapper);
     }
 
     @Bean
-    ListEmployee listEmployeeBean(@Qualifier("employeeDbRepositoryBean") EmployeeRepository repository, EmployeeAppMapper mapper){
-        return new ListEmployee(repository, mapper);
+    FindEmployeeByDocument findEmployeeByDocumentBean(@Qualifier("employeeDbRepositoryBean") EmployeeRepository repository, EmployeeAppMapper mapper) {
+        return new FindEmployeeByDocument(repository, mapper);
     }
 
     @Bean
-    ReadEmployee readEmployeeBean(@Qualifier("employeeFileRepositoryBean") EmployeeRepository repository, EmployeeAppMapper mapper, SortedEmployee sorted){
-        return new ReadEmployee(repository, mapper, sorted);
+    ReadEmployeeUsingSearchAlgorithm readEmployeeUsingSearchAlgorithmBean(@Qualifier("employeeFileRepositoryBean") EmployeeRepository repository, EmployeeAppMapper mapper, SearchEmployee search) {
+        return new ReadEmployeeUsingSearchAlgorithm(repository, mapper, search);
+    }
+
+    @Bean
+    FindEmployeeListUsingSortingMethod findEmployeeListUsingSortingMethodBean(@Qualifier("employeeDbRepositoryBean") EmployeeRepository repository, EmployeeAppMapper mapper){
+        return new FindEmployeeListUsingSortingMethod(repository, mapper);
+    }
+
+    @Bean
+    ReadEmployeeListUsingSortingAlgorithm readEmployeeListUsingSortingAlgorithmBean(@Qualifier("employeeFileRepositoryBean") EmployeeRepository repository, EmployeeAppMapper mapper, SortedEmployee sorted){
+        return new ReadEmployeeListUsingSortingAlgorithm(repository, mapper, sorted);
     }
 
     @Bean
@@ -100,13 +110,18 @@ public class InjectsConfig {
     }
 
     @Bean
+    SearchEmployee searchEmployeeBean(SortedEmployee sorted){
+        return new SearchEmployee(sorted);
+    }
+
+    @Bean
     CreateDepartment createDepartmentBean(@Qualifier("departmentDbRepositoryBean") DepartmentRepository repository, DepartmentAppMapper mapper){
         return new CreateDepartment(repository, mapper);
     }
 
     @Bean
-    ListDepartment listDepartmentBean(@Qualifier("departmentDbRepositoryBean") DepartmentRepository repository, DepartmentAppMapper mapper){
-        return new ListDepartment(repository, mapper);
+    FindDepartmentList findDepartmentListBean(@Qualifier("departmentDbRepositoryBean") DepartmentRepository repository, DepartmentAppMapper mapper){
+        return new FindDepartmentList(repository, mapper);
     }
 
     @Bean(name = "employeeDbRepositoryBean")
@@ -120,7 +135,7 @@ public class InjectsConfig {
     }
 
     @Bean(name = "departmentDbRepositoryBean")
-    DepartmentDbRepository departmentDbRepositoryBean(DepartmentJpaRepository jpaRepository, DepartmentDbMapper mapper){
+    DepartmentRepository departmentDbRepositoryBean(DepartmentJpaRepository jpaRepository, DepartmentDbMapper mapper){
         return new DepartmentDbRepository(jpaRepository, mapper );
     }
 

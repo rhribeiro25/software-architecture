@@ -46,6 +46,6 @@ public class DepartmentDbRepository implements DepartmentRepository {
     @Override
     public Department findByCode(String code) {
         Optional<DepartmentDbEntity> department = repository.findByCode(code);
-        return mapper.toDomain(department.orElseThrow(() -> new RuntimeException("Department not found with DepartmentCode: " + code)));
+        return mapper.toDomain(department.orElseThrow(() -> new RuntimeException("Department not found with Code: " + code)));
     }
 }

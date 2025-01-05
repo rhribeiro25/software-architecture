@@ -1,7 +1,7 @@
 package br.com.rhribeiro25.infrastructure.database.mappers;
 
 import br.com.rhribeiro25.domain.models.Department;
-import br.com.rhribeiro25.domain.valueobjects.DepartmentCode;
+import br.com.rhribeiro25.domain.valueobjects.department.Code;
 import br.com.rhribeiro25.infrastructure.database.entities.DepartmentDbEntity;
 
 public class DepartmentDbMapper {
@@ -15,7 +15,7 @@ public class DepartmentDbMapper {
 
     public Department toDomain(DepartmentDbEntity department) {
         return new Department.Builder()
-                .code(new DepartmentCode.Builder().value(department.getCode()).build())
+                .code(new Code.Builder().value(department.getCode()).build())
                 .name(department.getName())
                 .build();
     }

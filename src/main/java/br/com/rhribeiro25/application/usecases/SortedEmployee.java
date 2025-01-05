@@ -3,36 +3,44 @@ package br.com.rhribeiro25.application.usecases;
 import br.com.rhribeiro25.domain.models.Employee;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class SortedEmployee {
 
-    public Employee[] mergeSort(Employee[] employeeList) {
+    public Employee[] mergeSort(Employee[] employeeList, Comparator<Employee> comparator) {
+        if (employeeList.length < 2) {
+            return employeeList;
+        }
 
-        if (employeeList.length < 2) return this.bubbleSort(employeeList);
         int mid = employeeList.length / 2;
         Employee[] left = Arrays.copyOfRange(employeeList, 0, mid);
         Employee[] right = Arrays.copyOfRange(employeeList, mid, employeeList.length);
-        mergeSort(left);
-        mergeSort(right);
-        return merge(employeeList, left, right);
+
+        mergeSort(left, comparator);
+        mergeSort(right, comparator);
+
+        return merge(employeeList, left, right, comparator);
     }
 
-    private Employee[] merge(Employee[] employeeList, Employee[] left, Employee[] right) {
-
+    private Employee[] merge(Employee[] employeeList, Employee[] left, Employee[] right, Comparator<Employee> comparator) {
         int i = 0, j = 0, k = 0;
+
         while (i < left.length && j < right.length) {
-            if (left[i].getName().compareTo(right[j].getName()) <= 0) {
+
+            if (comparator.compare(left[i], right[j]) <= 0) {
                 employeeList[k++] = left[i++];
             } else {
                 employeeList[k++] = right[j++];
             }
         }
+
         while (i < left.length) {
             employeeList[k++] = left[i++];
         }
         while (j < right.length) {
             employeeList[k++] = right[j++];
         }
+
         return employeeList;
     }
 

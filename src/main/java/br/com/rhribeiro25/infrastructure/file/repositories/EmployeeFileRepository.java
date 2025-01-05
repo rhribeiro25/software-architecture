@@ -4,7 +4,6 @@ import br.com.rhribeiro25.domain.repositories.EmployeeRepository;
 import br.com.rhribeiro25.domain.models.Employee;
 import br.com.rhribeiro25.infrastructure.file.entities.EmployeeFileEntity;
 import br.com.rhribeiro25.infrastructure.file.mappers.EmployeeFileMapper;
-import br.com.rhribeiro25.shared.enums.RoleEnum;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.*;
@@ -38,7 +37,6 @@ public class EmployeeFileRepository implements EmployeeRepository {
 
         Long id = this.getNextId();
         EmployeeFileEntity entity = mapper.toEntity(id, employee);
-
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             writer.write(objectMapper.writeValueAsString(entity));
             writer.newLine();
@@ -50,6 +48,11 @@ public class EmployeeFileRepository implements EmployeeRepository {
 
     @Override
     public Employee update(Employee employee, Long id) {
+        return null;
+    }
+
+    @Override
+    public Employee findByDocument(String document) {
         return null;
     }
 

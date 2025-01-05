@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 @Table(
         name = "department",
-        uniqueConstraints = @UniqueConstraint(name = "employee_code_uk", columnNames = {"code"})
+        uniqueConstraints = @UniqueConstraint(name = "department_code_uk", columnNames = {"code"})
 )
 public class DepartmentDbEntity {
 

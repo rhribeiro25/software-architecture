@@ -5,23 +5,22 @@ import br.com.rhribeiro25.application.mappers.EmployeeAppMapper;
 import br.com.rhribeiro25.domain.models.Employee;
 import br.com.rhribeiro25.domain.repositories.EmployeeRepository;
 
-import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
-public class ReadEmployee {
+public class FindEmployeeListUsingSortingMethod {
 
     private final EmployeeRepository repository;
     private final EmployeeAppMapper mapper;
-    private final SortedEmployee sorted;
 
-    public ReadEmployee(EmployeeRepository repository, EmployeeAppMapper mapper, SortedEmployee sorted) {
+    public FindEmployeeListUsingSortingMethod(EmployeeRepository repository, EmployeeAppMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
-        this.sorted = sorted;
     }
 
-    public List<EmployeeResponse> readAll() {
-        Employee[] employeeListSorted = sorted.mergeSort(repository.findAll().toArray(new Employee[0]));
-        return mapper.toDtoList(Arrays.stream(employeeListSorted).toList());
+    public List<EmployeeResponse> getAll(){
+        List<Employee> employeeListSorted = this.repository.findAll().stream()
+                .sorted(Comparator.comparing(Employee::getName)).toList();
+        return mapper.toDtoList(employeeListSorted);
     }
 }

@@ -2,7 +2,7 @@ package br.com.rhribeiro25.domain.services;
 
 import br.com.rhribeiro25.domain.models.Employee;
 import br.com.rhribeiro25.domain.models.Department;
-import br.com.rhribeiro25.domain.valueobjects.DepartmentCode;
+import br.com.rhribeiro25.domain.valueobjects.department.Code;
 import br.com.rhribeiro25.shared.enums.RoleEnum;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 public class DepartmentServiceTest {
     @Test
     void shouldCalculateTotalSalary() {
-        Department department = new Department.Builder().code(new DepartmentCode.Builder().value("123456789").build()).name("Engineering").build();
+        Department department = new Department.Builder().code(new Code.Builder().value("123456789").build()).name("Engineering").build();
         department.addEmployee(new Employee.Builder()
                 .name("Alice")
                 .role(RoleEnum.MAIN_MANAGER)
@@ -32,7 +32,7 @@ public class DepartmentServiceTest {
 
     @Test
     void shouldCalculateAverageSalary() {
-        Department department = new Department.Builder().code(new DepartmentCode.Builder().value("123456789").build()).name("Engineering").build();
+        Department department = new Department.Builder().code(new Code.Builder().value("123456789").build()).name("Engineering").build();
         department.addEmployee(new Employee.Builder()
                 .name("Alice")
                 .role(RoleEnum.MAIN_MANAGER)
@@ -52,7 +52,7 @@ public class DepartmentServiceTest {
 
     @Test
     void shouldApplySalaryIncreaseBasedOnPerformance() {
-        Department department = new Department.Builder().code(new DepartmentCode.Builder().value("123456789").build()).name("Engineering").build();
+        Department department = new Department.Builder().code(new Code.Builder().value("123456789").build()).name("Engineering").build();
         Employee employee = new Employee.Builder()
                 .name("Fernando")
                 .role(RoleEnum.MAIN_MANAGER)
@@ -69,7 +69,7 @@ public class DepartmentServiceTest {
 
     @Test
     void shouldGeneratePerformanceReport() {
-        Department department = new Department.Builder().code(new DepartmentCode.Builder().value("123456789").build()).name("Engineering").build();
+        Department department = new Department.Builder().code(new Code.Builder().value("123456789").build()).name("Engineering").build();
         department.addEmployee(new Employee.Builder()
                 .name("Alice")
                 .role(RoleEnum.MAIN_MANAGER)

@@ -1,5 +1,6 @@
 package br.com.rhribeiro25.infrastructure.file.entities;
 
+import br.com.rhribeiro25.shared.enums.DocumentTypeEnum;
 import br.com.rhribeiro25.shared.enums.RoleEnum;
 
 import java.math.BigDecimal;
@@ -9,6 +10,10 @@ public class EmployeeFileEntity {
     private Long id;
 
     private String name;
+
+    private DocumentTypeEnum documentType;
+
+    private String document;
 
     private RoleEnum role;
 
@@ -23,6 +28,8 @@ public class EmployeeFileEntity {
     public EmployeeFileEntity(EmployeeFileEntity.Builder builder) {
         this.id = builder.id;
         this.name = builder.name;
+        this.documentType = builder.documentType;
+        this.document = builder.document;
         this.role = builder.role;
         this.salary = builder.salary;
         this.department = builder.departmentDbEntity;
@@ -72,11 +79,29 @@ public class EmployeeFileEntity {
         this.performanceRating = performanceRating;
     }
 
+    public DocumentTypeEnum getDocumentType() {
+        return documentType;
+    }
+
+    public void setDocumentType(DocumentTypeEnum documentType) {
+        this.documentType = documentType;
+    }
+
+    public String getDocument() {
+        return document;
+    }
+
+    public void setDocument(String document) {
+        this.document = document;
+    }
+
     // Builder Design Pattern simplifies the creation of complex objects.
     public static class Builder {
 
         private Long id;
         private String name;
+        private DocumentTypeEnum documentType;
+        private String document;
         private RoleEnum role;
         private BigDecimal salary;
         private DepartmentFileEntity departmentDbEntity;
@@ -88,6 +113,16 @@ public class EmployeeFileEntity {
 
         public EmployeeFileEntity.Builder name(String name) {
             this.name = name;
+            return this;
+        }
+
+        public EmployeeFileEntity.Builder documentType(DocumentTypeEnum documentType) {
+            this.documentType = documentType;
+            return this;
+        }
+
+        public EmployeeFileEntity.Builder document(String document) {
+            this.document = document;
             return this;
         }
 

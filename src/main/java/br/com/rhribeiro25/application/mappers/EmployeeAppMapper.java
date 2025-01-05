@@ -1,6 +1,5 @@
 package br.com.rhribeiro25.application.mappers;
 
-import br.com.rhribeiro25.application.dtos.DepartmentResponse;
 import br.com.rhribeiro25.application.dtos.EmployeeResponse;
 import br.com.rhribeiro25.domain.models.Employee;
 

@@ -1,6 +1,6 @@
 package br.com.rhribeiro25.domain.models;
 
-import br.com.rhribeiro25.domain.valueobjects.DepartmentCode;
+import br.com.rhribeiro25.domain.valueobjects.department.Code;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Department {
 
-    private DepartmentCode code;
+    private Code code;
 
     private String name;
 
@@ -40,7 +40,7 @@ public class Department {
         this.employees = employees;
     }
 
-    public DepartmentCode getCode() {
+    public Code getCode() {
         return code;
     }
 
@@ -72,13 +72,13 @@ public class Department {
     // Builder Design Pattern simplifies the creation of complex objects.
     public static class Builder {
 
-        private DepartmentCode code;
+        private Code code;
 
         private String name;
 
         private List<Employee> employees;
 
-        public Department.Builder code(DepartmentCode code) {
+        public Department.Builder code(Code code) {
             this.code = code;
             return this;
         }

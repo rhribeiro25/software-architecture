@@ -1,6 +1,7 @@
 package br.com.rhribeiro25.application.usecases;
 
 import br.com.rhribeiro25.domain.models.Employee;
+import br.com.rhribeiro25.shared.enums.DepartmentCodeEnum;
 
 import java.util.Comparator;
 
@@ -13,7 +14,7 @@ public class SearchEmployee {
     }
 
 
-    public Employee binarySearchEmployee(Employee[] employeeList, String attribute, Comparator<Employee> comparator) {
+    public Employee binarySearchByDocument(Employee[] employeeList, String attribute, Comparator<Employee> comparator) {
 
         sortedEmployee.mergeSort(employeeList, comparator);
 
@@ -59,16 +60,15 @@ public class SearchEmployee {
             return new Employee[0];
         }
 
-//        if (DepartmentCodeEnum.valueOf(employeeList[index].getDepartment().getName()).getKey() == depKey) {
-//            Employee[] result = linearSearchByDepartment(employeeList, depKey, index + 1);
-//            Employee[] newResult = new Employee[result.length + 1];
-//            newResult[0] = employeeList[index];
-//            System.arraycopy(result, 0, newResult, 1, result.length);
-//            return newResult;
-//        } else {
-//            return linearSearchByDepartment(employeeList, depKey, index + 1);
-//        }
-        return null;
+        if (DepartmentCodeEnum.valueOf(employeeList[index].getDepartmentCode()).getKey() == depKey) {
+            Employee[] result = linearSearchByDepartment(employeeList, depKey, index + 1);
+            Employee[] newResult = new Employee[result.length + 1];
+            newResult[0] = employeeList[index];
+            System.arraycopy(result, 0, newResult, 1, result.length);
+            return newResult;
+        } else {
+            return linearSearchByDepartment(employeeList, depKey, index + 1);
+        }
     }
 
 }

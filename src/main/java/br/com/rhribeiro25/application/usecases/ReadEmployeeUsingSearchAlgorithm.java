@@ -24,7 +24,7 @@ public class ReadEmployeeUsingSearchAlgorithm {
         Comparator<Employee> comparator = Comparator.comparing(employee ->
                 employee.getDocument() != null ? employee.getDocument().getValue() : ""
         );
-        Employee employee = search.binarySearchEmployee(employeeList, document, comparator);
+        Employee employee = search.binarySearchByDocument(employeeList, document, comparator);
         return mapper.toDto(employee);
     }
 }

@@ -11,7 +11,6 @@ import br.com.rhribeiro25.infrastructure.file.mappers.EmployeeFileMapper;
 import br.com.rhribeiro25.infrastructure.database.repositories.EmployeeDbRepository;
 import br.com.rhribeiro25.infrastructure.database.repositories.jpa.EmployeeJpaRepository;
 import br.com.rhribeiro25.infrastructure.file.repositories.EmployeeFileRepository;
-import br.com.rhribeiro25.infrastructure.messaging.mappers.EmployeeMsgMapper;
 import br.com.rhribeiro25.interfaces.mappers.DepartmentIntMapper;
 import br.com.rhribeiro25.interfaces.mappers.EmployeeIntMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -42,11 +41,6 @@ public class InjectsConfig {
     @Bean
     EmployeeFileMapper employeeFileMapperBean(){
         return new EmployeeFileMapper();
-    }
-
-    @Bean
-    EmployeeMsgMapper employeeMsgMapperBean(){
-        return new EmployeeMsgMapper();
     }
 
     @Bean
@@ -105,15 +99,15 @@ public class InjectsConfig {
     }
 
     @Bean
-    SortedEmployee sortedEmployeeBean(){
-        return new SortedEmployee();
+    DeleteEmployee deleteEmployeeBean(@Qualifier("employeeDbRepositoryBean") EmployeeRepository repository){
+        return new DeleteEmployee(repository);
     }
 
     @Bean
-    SearchEmployee searchEmployeeBean(SortedEmployee sorted){
-        return new SearchEmployee(sorted);
+    RemoveEmployee removeEmployeeBean(@Qualifier("employeeFileRepositoryBean") EmployeeRepository repository){
+        return new RemoveEmployee(repository);
     }
-
+    
     @Bean
     CreateDepartment createDepartmentBean(@Qualifier("departmentDbRepositoryBean") DepartmentRepository repository, DepartmentAppMapper mapper){
         return new CreateDepartment(repository, mapper);
@@ -137,6 +131,16 @@ public class InjectsConfig {
     @Bean(name = "departmentDbRepositoryBean")
     DepartmentRepository departmentDbRepositoryBean(DepartmentJpaRepository jpaRepository, DepartmentDbMapper mapper){
         return new DepartmentDbRepository(jpaRepository, mapper );
+    }
+
+    @Bean
+    SortedEmployee sortedEmployeeBean(){
+        return new SortedEmployee();
+    }
+
+    @Bean
+    SearchEmployee searchEmployeeBean(SortedEmployee sorted){
+        return new SearchEmployee(sorted);
     }
 
 }

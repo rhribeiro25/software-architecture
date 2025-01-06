@@ -7,6 +7,9 @@ import br.com.rhribeiro25.infrastructure.file.mappers.EmployeeFileMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class EmployeeFileRepository implements EmployeeRepository {
@@ -19,7 +22,7 @@ public class EmployeeFileRepository implements EmployeeRepository {
 
     private final String metadataFilePath;
 
-    private final String filePath;
+    private final String dataFilePath;
 
     private final EmployeeFileMapper mapper;
 
@@ -28,16 +31,15 @@ public class EmployeeFileRepository implements EmployeeRepository {
     public EmployeeFileRepository(EmployeeFileMapper mapper, ObjectMapper objectMapper) {
         this.mapper = mapper;
         this.objectMapper = objectMapper;
-        this.filePath = userHome + "/" + employeeData;
+        this.dataFilePath = userHome + "/" + employeeData;
         this.metadataFilePath =  userHome + "/" + employeeMetadata;
     }
 
     public Employee save(Employee employee) {
         ObjectMapper objectMapper = new ObjectMapper();
-
         Long id = this.getNextId();
         EmployeeFileEntity entity = mapper.toEntity(id, employee);
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(dataFilePath, true))) {
             writer.write(objectMapper.writeValueAsString(entity));
             writer.newLine();
         } catch (IOException e) {
@@ -53,13 +55,55 @@ public class EmployeeFileRepository implements EmployeeRepository {
 
     @Override
     public Employee findByDocument(String document) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<EmployeeFileEntity> employeeList = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(dataFilePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                employeeList.add(objectMapper.readValue(line, EmployeeFileEntity.class));
+            }
+            for (int i = 0; i < employeeList.size(); i++) {
+                EmployeeFileEntity employee = employeeList.get(i);
+                if (employee.getDocument().equals(document)) {
+                    return mapper.toDomain(employee);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error to remove employee with document: " + document);
+            throw new RuntimeException("Error processing JSON file", e);
+        }
         return null;
+    }
+
+    @Override
+    public boolean deleteByDocument(String document) {
+        List<EmployeeFileEntity> employeeList = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(dataFilePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                employeeList.add(objectMapper.readValue(line, EmployeeFileEntity.class));
+            }
+            for (int i = 0; i < employeeList.size(); i++) {
+                EmployeeFileEntity employee = employeeList.get(i);
+                if (employee.getDocument().equals(document)) {
+                    employeeList.remove(i);
+                    Path path = Paths.get(dataFilePath);
+                    Files.write(path, new byte[0]);
+                    employeeList.forEach(entity -> this.save(mapper.toDomain(entity)));
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error to remove employee with document: " + document);
+            throw new RuntimeException("Error processing JSON file", e);
+        }
+        return false;
     }
 
     public List<Employee> findAll() {
 
         List<EmployeeFileEntity> entityList = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(dataFilePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 entityList.add(objectMapper.readValue(line, EmployeeFileEntity.class));
@@ -68,11 +112,6 @@ public class EmployeeFileRepository implements EmployeeRepository {
             System.err.println(e.getMessage());
         }
         return mapper.toDomainList(entityList);
-    }
-
-    @Override
-    public Employee findById(Long id) {
-        return null;
     }
 
     private long getNextId() {

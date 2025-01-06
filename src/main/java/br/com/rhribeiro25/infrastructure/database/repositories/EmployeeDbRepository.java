@@ -8,6 +8,7 @@ import br.com.rhribeiro25.infrastructure.database.mappers.EmployeeDbMapper;
 import br.com.rhribeiro25.infrastructure.database.repositories.jpa.DepartmentJpaRepository;
 import br.com.rhribeiro25.infrastructure.database.repositories.jpa.EmployeeJpaRepository;
 import br.com.rhribeiro25.shared.enums.DepartmentCodeEnum;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +26,7 @@ public class EmployeeDbRepository implements EmployeeRepository {
     }
 
     @Override
+    @Transactional
     public Employee save(Employee employee) {
         Optional<DepartmentDbEntity> department = departmentJpaRepository.findByCode(employee.getDepartmentCode());
         if(department.isEmpty()){
@@ -41,26 +43,35 @@ public class EmployeeDbRepository implements EmployeeRepository {
     }
 
     @Override
+    @Transactional
     public Employee update(Employee employee, Long id) {
         return null;
     }
 
     @Override
+    @Transactional
     public Employee findByDocument(String document) {
         EmployeeDbEntity entity =  employeeJpaRepository.findByDocument(document).orElseThrow(() -> new RuntimeException("Employee not found with document: " + document));
         return mapper.toDomain(entity);
     }
 
     @Override
+    @Transactional
+    public boolean deleteByDocument(String document) {
+        Optional<EmployeeDbEntity> entity = employeeJpaRepository.findByDocument(document);
+        if (entity.isPresent()) {
+            employeeJpaRepository.delete(entity.get());
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    @Transactional
     public List<Employee> findAll() {
         return employeeJpaRepository.findAll().stream()
                 .map(mapper::toDomain)
                 .collect(Collectors.toList());
-    }
-
-    @Override
-    public Employee findById(Long id) {
-        return null;
     }
 
 }

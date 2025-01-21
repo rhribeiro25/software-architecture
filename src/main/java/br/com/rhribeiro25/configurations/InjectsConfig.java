@@ -4,6 +4,7 @@ import br.com.rhribeiro25.application.mappers.DepartmentAppMapper;
 import br.com.rhribeiro25.application.usecases.*;
 import br.com.rhribeiro25.domain.repositories.DepartmentRepository;
 import br.com.rhribeiro25.domain.repositories.EmployeeRepository;
+import br.com.rhribeiro25.domain.services.EmployeeService;
 import br.com.rhribeiro25.infrastructure.database.mappers.DepartmentDbMapper;
 import br.com.rhribeiro25.infrastructure.database.repositories.DepartmentDbRepository;
 import br.com.rhribeiro25.infrastructure.database.repositories.jpa.DepartmentJpaRepository;
@@ -64,8 +65,13 @@ public class InjectsConfig {
     }
 
     @Bean
-    CreateRandomMockEmployee createRandomMockEmployeeBean(@Qualifier("employeeDbRepositoryBean") EmployeeRepository repository, EmployeeAppMapper mapper){
-        return new CreateRandomMockEmployee(repository, mapper);
+    CreateRandomMockEmployee createRandomMockEmployeeBean(@Qualifier("employeeDbRepositoryBean") EmployeeRepository repository, EmployeeService employeeService, EmployeeAppMapper mapper){
+        return new CreateRandomMockEmployee(repository, employeeService, mapper);
+    }
+
+    @Bean
+    UpdateEmployee updateEmployeeBean(@Qualifier("employeeDbRepositoryBean") EmployeeRepository employeeRepository, EmployeeAppMapper mapper){
+        return new UpdateEmployee(employeeRepository, mapper);
     }
 
     @Bean
@@ -74,8 +80,8 @@ public class InjectsConfig {
     }
 
     @Bean
-    WriteRandomMockEmployee writeRandomMockEmployeeBean(@Qualifier("employeeFileRepositoryBean") EmployeeRepository repository, EmployeeAppMapper mapper){
-        return new WriteRandomMockEmployee(repository, mapper);
+    WriteRandomMockEmployee writeRandomMockEmployeeBean(@Qualifier("employeeFileRepositoryBean") EmployeeRepository repository, EmployeeService employeeService, EmployeeAppMapper mapper){
+        return new WriteRandomMockEmployee(repository, employeeService, mapper);
     }
 
     @Bean
@@ -141,6 +147,11 @@ public class InjectsConfig {
     @Bean
     SearchEmployee searchEmployeeBean(SortedEmployee sorted){
         return new SearchEmployee(sorted);
+    }
+
+    @Bean
+    EmployeeService employeeServiceBean(){
+        return new EmployeeService();
     }
 
 }

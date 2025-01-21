@@ -44,8 +44,22 @@ public class EmployeeDbRepository implements EmployeeRepository {
 
     @Override
     @Transactional
-    public Employee update(Employee employee, Long id) {
-        return null;
+    public Employee update(Employee employee) {
+        String document = employee.getDocument().getValue();
+        Long id =  employeeJpaRepository.findByDocument(document).orElseThrow(() -> new RuntimeException("Employee not found with document: " + document)).getId();
+        Optional<DepartmentDbEntity> department = departmentJpaRepository.findByCode(employee.getDepartmentCode());
+        if(department.isEmpty()){
+            DepartmentDbEntity entity = new DepartmentDbEntity.Builder()
+                    .code(employee.getDepartmentCode())
+                    .name(DepartmentCodeEnum.valueOf(employee.getDepartmentCode()).getDescription())
+                    .build();
+            department = Optional.of(departmentJpaRepository.save(entity));
+        }
+        EmployeeDbEntity entity = mapper.toEntity(employee);
+        entity.setId(id);
+        entity.setDepartment(department.get());
+        employeeJpaRepository.save(entity);
+        return mapper.toDomain(entity);
     }
 
     @Override

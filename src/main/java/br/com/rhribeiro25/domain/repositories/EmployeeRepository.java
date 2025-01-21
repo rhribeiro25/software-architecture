@@ -13,7 +13,7 @@ public interface EmployeeRepository {
 
     Employee save(Employee employee);
 
-    Employee update(Employee employee, Long id);
+    Employee update(Employee employee);
 
     Employee findByDocument(String document);
 

@@ -1,10 +1,11 @@
-package br.com.rhribeiro25.shared.mocks;
+package br.com.rhribeiro25.domain.services;
 
 import br.com.rhribeiro25.domain.models.Employee;
 import br.com.rhribeiro25.domain.valueobjects.employee.Document;
 import br.com.rhribeiro25.shared.enums.DepartmentCodeEnum;
 import br.com.rhribeiro25.shared.enums.DocumentTypeEnum;
 import br.com.rhribeiro25.shared.enums.RoleEnum;
+import br.com.rhribeiro25.shared.mocks.EmployeeNames;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -12,13 +13,12 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-public abstract class RandomEmployeeList {
+public class EmployeeService {
 
-    public static List<Employee> create(){
+    public List<Employee> createRandomMockList(){
         List<Employee> employeeList = new ArrayList<>();
         String[] names = EmployeeNames.getAll();
         Random random = new Random();
-
 
         for (int i = 0; i < names.length; i++) {
 

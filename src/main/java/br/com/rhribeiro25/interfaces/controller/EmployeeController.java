@@ -29,9 +29,11 @@ public class EmployeeController {
     private final DeleteEmployee deleteEmployee;
     private final RemoveEmployee removeEmployee;
 
+    private final UpdateEmployee updateEmployee;
+
     private final EmployeeIntMapper mapper;
 
-    public EmployeeController(CreateEmployee createEmployee, CreateRandomMockEmployee createRandomMockEmployee, WriteEmployee writeEmployee, WriteRandomMockEmployee writeRandomMockEmployee, FindEmployeeByDocument findEmployeeByDocument, ReadEmployeeUsingSearchAlgorithm readEmployeeUsingSearchAlgorithm, FindEmployeeListUsingSortingMethod findEmployeeListUsingSortingMethod, ReadEmployeeListUsingSortingAlgorithm readEmployeeListUsingSortingAlgorithm, DeleteEmployee deleteEmployee, RemoveEmployee removeEmployee, EmployeeIntMapper mapper) {
+    public EmployeeController(CreateEmployee createEmployee, CreateRandomMockEmployee createRandomMockEmployee, WriteEmployee writeEmployee, WriteRandomMockEmployee writeRandomMockEmployee, FindEmployeeByDocument findEmployeeByDocument, ReadEmployeeUsingSearchAlgorithm readEmployeeUsingSearchAlgorithm, FindEmployeeListUsingSortingMethod findEmployeeListUsingSortingMethod, ReadEmployeeListUsingSortingAlgorithm readEmployeeListUsingSortingAlgorithm, DeleteEmployee deleteEmployee, RemoveEmployee removeEmployee, UpdateEmployee updateEmployee, EmployeeIntMapper mapper) {
         this.createEmployee = createEmployee;
         this.createRandomMockEmployee = createRandomMockEmployee;
         this.writeEmployee = writeEmployee;
@@ -42,6 +44,7 @@ public class EmployeeController {
         this.readEmployeeListUsingSortingAlgorithm = readEmployeeListUsingSortingAlgorithm;
         this.deleteEmployee = deleteEmployee;
         this.removeEmployee = removeEmployee;
+        this.updateEmployee = updateEmployee;
         this.mapper = mapper;
     }
 
@@ -51,6 +54,16 @@ public class EmployeeController {
             @RequestParam StorageEnum storage) {
         return switch (storage) {
             case POSTGRES -> createEmployee.simpleCreation(mapper.toDomain(dto));
+            case FILE -> writeEmployee.simpleWrite(mapper.toDomain(dto));
+        };
+    }
+
+    @PutMapping
+    public EmployeeResponse update(
+            @RequestBody EmployeeRequest dto,
+            @RequestParam StorageEnum storage) {
+        return switch (storage) {
+            case POSTGRES -> updateEmployee.fullUpdate(mapper.toDomain(dto));
             case FILE -> writeEmployee.simpleWrite(mapper.toDomain(dto));
         };
     }

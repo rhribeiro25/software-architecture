@@ -1,33 +1,33 @@
 package br.com.rhribeiro25.application.usecases;
 
-import br.com.rhribeiro25.domain.Employee;
+import br.com.rhribeiro25.domain.models.Employee;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class SortedEmployee {
 
-    public void mergeSort(Employee[] employeeList) {
-
+    public Employee[] mergeSort(Employee[] employeeList, Comparator<Employee> comparator) {
         if (employeeList.length < 2) {
-            return;
+            return employeeList;
         }
 
         int mid = employeeList.length / 2;
         Employee[] left = Arrays.copyOfRange(employeeList, 0, mid);
         Employee[] right = Arrays.copyOfRange(employeeList, mid, employeeList.length);
 
-        mergeSort(left);
-        mergeSort(right);
+        mergeSort(left, comparator);
+        mergeSort(right, comparator);
 
-        merge(employeeList, left, right);
+        return merge(employeeList, left, right, comparator);
     }
 
-    private void merge(Employee[] employeeList, Employee[] left, Employee[] right) {
-
+    private Employee[] merge(Employee[] employeeList, Employee[] left, Employee[] right, Comparator<Employee> comparator) {
         int i = 0, j = 0, k = 0;
 
         while (i < left.length && j < right.length) {
-            if (left[i].getName().compareTo(right[j].getName()) <= 0) {
+
+            if (comparator.compare(left[i], right[j]) <= 0) {
                 employeeList[k++] = left[i++];
             } else {
                 employeeList[k++] = right[j++];
@@ -40,53 +40,39 @@ public class SortedEmployee {
         while (j < right.length) {
             employeeList[k++] = right[j++];
         }
+
+        return employeeList;
     }
 
-    public void bubbleSort(Employee[] employeeList) {
+    public Employee[] bubbleSort(Employee[] employeeList) {
 
         int length = employeeList.length - 1;
-
         for (int i = 0; i < length - 1; i++) {
-
             for (int j = 0; j < length - i - 1; j++) {
-
                 if (employeeList[j].getName().compareTo(employeeList[j + 1].getName()) > 0) {
-
                     Employee temp = employeeList[j];
-
                     employeeList[j] = employeeList[j + 1];
-
                     employeeList[j + 1] = temp;
-
                 }
             }
         }
+        return employeeList;
     }
 
-    public void selectionSort(Employee[] employeeList) {
+    public Employee[] selectionSort(Employee[] employeeList) {
     
         int length = employeeList.length -1;
-
         for (int i = 0; i < length - 1; i++) {
-           
             int minPosition = i;
-            
             for (int j = i + 1; j < length; j++) {
-
                 if (employeeList[j].getName().compareTo(employeeList[j + 1].getName()) > 0) {
-
                     minPosition = j;
-                    
                 }
             }
-
             Employee tempPage = employeeList[i];
-
             employeeList[i] = employeeList[minPosition];
-
             employeeList[minPosition] = tempPage;
-
-            
         }
+        return employeeList;
     }
 }

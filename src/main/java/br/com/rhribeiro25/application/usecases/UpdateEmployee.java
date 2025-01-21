@@ -2,20 +2,20 @@ package br.com.rhribeiro25.application.usecases;
 
 import br.com.rhribeiro25.application.dtos.EmployeeResponse;
 import br.com.rhribeiro25.application.mappers.EmployeeAppMapper;
-import br.com.rhribeiro25.domain.repositories.EmployeeRepository;
 import br.com.rhribeiro25.domain.models.Employee;
+import br.com.rhribeiro25.domain.repositories.EmployeeRepository;
 
-public class WriteEmployee {
-
+public class UpdateEmployee {
     private final EmployeeRepository employeeRepository;
     private final EmployeeAppMapper mapper;
 
-    public WriteEmployee(EmployeeRepository employeeRepository, EmployeeAppMapper mapper) {
+    public UpdateEmployee(EmployeeRepository employeeRepository, EmployeeAppMapper mapper) {
         this.employeeRepository = employeeRepository;
         this.mapper = mapper;
     }
 
-    public EmployeeResponse simpleWrite(Employee employee) {
-        return mapper.toDto(employeeRepository.save(employee));
+    public EmployeeResponse fullUpdate(Employee employee) {
+        return mapper.toDto(employeeRepository.update(employee));
     }
+
 }

@@ -75,6 +75,11 @@ public class InjectsConfig {
     }
 
     @Bean
+    EditEmployee editEmployeeBean(@Qualifier("employeeFileRepositoryBean") EmployeeRepository employeeRepository, EmployeeAppMapper mapper){
+        return new EditEmployee(employeeRepository, mapper);
+    }
+
+    @Bean
     WriteEmployee writeEmployeeBean(@Qualifier("employeeFileRepositoryBean") EmployeeRepository repository, EmployeeAppMapper mapper){
         return new WriteEmployee(repository, mapper);
     }

@@ -30,10 +30,11 @@ public class EmployeeController {
     private final RemoveEmployee removeEmployee;
 
     private final UpdateEmployee updateEmployee;
+    private final EditEmployee editEmployee;
 
     private final EmployeeIntMapper mapper;
 
-    public EmployeeController(CreateEmployee createEmployee, CreateRandomMockEmployee createRandomMockEmployee, WriteEmployee writeEmployee, WriteRandomMockEmployee writeRandomMockEmployee, FindEmployeeByDocument findEmployeeByDocument, ReadEmployeeUsingSearchAlgorithm readEmployeeUsingSearchAlgorithm, FindEmployeeListUsingSortingMethod findEmployeeListUsingSortingMethod, ReadEmployeeListUsingSortingAlgorithm readEmployeeListUsingSortingAlgorithm, DeleteEmployee deleteEmployee, RemoveEmployee removeEmployee, UpdateEmployee updateEmployee, EmployeeIntMapper mapper) {
+    public EmployeeController(CreateEmployee createEmployee, CreateRandomMockEmployee createRandomMockEmployee, WriteEmployee writeEmployee, WriteRandomMockEmployee writeRandomMockEmployee, FindEmployeeByDocument findEmployeeByDocument, ReadEmployeeUsingSearchAlgorithm readEmployeeUsingSearchAlgorithm, FindEmployeeListUsingSortingMethod findEmployeeListUsingSortingMethod, ReadEmployeeListUsingSortingAlgorithm readEmployeeListUsingSortingAlgorithm, DeleteEmployee deleteEmployee, RemoveEmployee removeEmployee, UpdateEmployee updateEmployee, EditEmployee editEmployee, EmployeeIntMapper mapper) {
         this.createEmployee = createEmployee;
         this.createRandomMockEmployee = createRandomMockEmployee;
         this.writeEmployee = writeEmployee;
@@ -45,6 +46,7 @@ public class EmployeeController {
         this.deleteEmployee = deleteEmployee;
         this.removeEmployee = removeEmployee;
         this.updateEmployee = updateEmployee;
+        this.editEmployee = editEmployee;
         this.mapper = mapper;
     }
 
@@ -64,7 +66,7 @@ public class EmployeeController {
             @RequestParam StorageEnum storage) {
         return switch (storage) {
             case POSTGRES -> updateEmployee.fullUpdate(mapper.toDomain(dto));
-            case FILE -> writeEmployee.simpleWrite(mapper.toDomain(dto));
+            case FILE -> editEmployee.updateLine(mapper.toDomain(dto));
         };
     }
 

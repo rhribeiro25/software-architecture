@@ -50,6 +50,26 @@ public class EmployeeFileRepository implements EmployeeRepository {
 
     @Override
     public Employee update(Employee employee) {
+        List<EmployeeFileEntity> employeeList = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(dataFilePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                employeeList.add(objectMapper.readValue(line, EmployeeFileEntity.class));
+            }
+            for (int i = 0; i < employeeList.size(); i++) {
+                Long id = employeeList.get(i).getId();
+                if (employeeList.get(i).getDocument().equals(employee.getDocument().getValue())) {
+                    employeeList.set(i, mapper.toEntity(id, employee));
+                    Path path = Paths.get(dataFilePath);
+                    Files.write(path, new byte[0]);
+                    employeeList.forEach(entity -> this.save(mapper.toDomain(entity)));
+                    return mapper.toDomain(employeeList.get(i));
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error to edit employee with document: " + employee.getDocument());
+            throw new RuntimeException("Error processing JSON file", e);
+        }
         return null;
     }
 

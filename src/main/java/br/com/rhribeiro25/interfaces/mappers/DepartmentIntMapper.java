@@ -1,6 +1,6 @@
 package br.com.rhribeiro25.interfaces.mappers;
 
-import br.com.rhribeiro25.domain.models.Department;
+import br.com.rhribeiro25.domain.models.department.Department;
 import br.com.rhribeiro25.domain.valueobjects.department.Code;
 import br.com.rhribeiro25.interfaces.dtos.DepartmentRequest;
 

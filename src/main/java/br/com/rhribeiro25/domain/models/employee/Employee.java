@@ -1,4 +1,4 @@
-package br.com.rhribeiro25.domain.models;
+package br.com.rhribeiro25.domain.models.employee;
 
 import br.com.rhribeiro25.domain.valueobjects.employee.Document;
 import br.com.rhribeiro25.shared.enums.RoleEnum;

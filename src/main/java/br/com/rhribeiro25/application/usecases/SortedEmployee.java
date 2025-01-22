@@ -1,6 +1,6 @@
 package br.com.rhribeiro25.application.usecases;
 
-import br.com.rhribeiro25.domain.models.Employee;
+import br.com.rhribeiro25.domain.models.employee.Employee;
 
 import java.util.Arrays;
 import java.util.Comparator;

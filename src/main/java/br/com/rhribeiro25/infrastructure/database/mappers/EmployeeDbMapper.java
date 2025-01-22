@@ -1,7 +1,6 @@
 package br.com.rhribeiro25.infrastructure.database.mappers;
 
-import br.com.rhribeiro25.domain.models.Employee;
-import br.com.rhribeiro25.domain.models.Department;
+import br.com.rhribeiro25.domain.models.employee.Employee;
 import br.com.rhribeiro25.domain.valueobjects.employee.Document;
 import br.com.rhribeiro25.infrastructure.database.entities.DepartmentDbEntity;
 import br.com.rhribeiro25.infrastructure.database.entities.EmployeeDbEntity;

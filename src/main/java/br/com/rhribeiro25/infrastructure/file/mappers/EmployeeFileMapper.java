@@ -1,7 +1,6 @@
 package br.com.rhribeiro25.infrastructure.file.mappers;
 
-import br.com.rhribeiro25.application.dtos.EmployeeResponse;
-import br.com.rhribeiro25.domain.models.Employee;
+import br.com.rhribeiro25.domain.models.employee.Employee;
 import br.com.rhribeiro25.domain.valueobjects.employee.Document;
 import br.com.rhribeiro25.infrastructure.file.entities.DepartmentFileEntity;
 import br.com.rhribeiro25.infrastructure.file.entities.EmployeeFileEntity;

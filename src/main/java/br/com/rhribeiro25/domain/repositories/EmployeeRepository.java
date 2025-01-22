@@ -1,10 +1,10 @@
 package br.com.rhribeiro25.domain.repositories;
 
-import br.com.rhribeiro25.domain.models.Employee;
+import br.com.rhribeiro25.domain.models.employee.Employee;
 
 import java.util.List;
 
-// Strategy Design Pattern offers flexibility to update, reusability across contexts,
+// STRATEGY PATTERN offers flexibility to update, reusability across contexts,
 // and scalability for complex cases with new strategies.
 
 public interface EmployeeRepository {

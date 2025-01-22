@@ -1,6 +1,6 @@
 package br.com.rhribeiro25.infrastructure.database.repositories;
 
-import br.com.rhribeiro25.domain.models.Employee;
+import br.com.rhribeiro25.domain.models.employee.Employee;
 import br.com.rhribeiro25.domain.repositories.EmployeeRepository;
 import br.com.rhribeiro25.infrastructure.database.entities.DepartmentDbEntity;
 import br.com.rhribeiro25.infrastructure.database.entities.EmployeeDbEntity;

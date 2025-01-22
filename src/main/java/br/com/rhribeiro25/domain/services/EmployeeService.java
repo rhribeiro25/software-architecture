@@ -1,6 +1,6 @@
 package br.com.rhribeiro25.domain.services;
 
-import br.com.rhribeiro25.domain.models.Employee;
+import br.com.rhribeiro25.domain.models.employee.Employee;
 import br.com.rhribeiro25.domain.valueobjects.employee.Document;
 import br.com.rhribeiro25.shared.enums.DepartmentCodeEnum;
 import br.com.rhribeiro25.shared.enums.DocumentTypeEnum;

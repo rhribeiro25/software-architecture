@@ -1,7 +1,7 @@
 package br.com.rhribeiro25.application.mappers;
 
 import br.com.rhribeiro25.application.dtos.EmployeeResponse;
-import br.com.rhribeiro25.domain.models.Employee;
+import br.com.rhribeiro25.domain.models.employee.Employee;
 
 import java.util.List;
 import java.util.stream.Collectors;

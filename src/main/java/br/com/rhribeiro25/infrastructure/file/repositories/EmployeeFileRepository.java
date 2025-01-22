@@ -1,7 +1,7 @@
 package br.com.rhribeiro25.infrastructure.file.repositories;
 
 import br.com.rhribeiro25.domain.repositories.EmployeeRepository;
-import br.com.rhribeiro25.domain.models.Employee;
+import br.com.rhribeiro25.domain.models.employee.Employee;
 import br.com.rhribeiro25.infrastructure.file.entities.EmployeeFileEntity;
 import br.com.rhribeiro25.infrastructure.file.mappers.EmployeeFileMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;

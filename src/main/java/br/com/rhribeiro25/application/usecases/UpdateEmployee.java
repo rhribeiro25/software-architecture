@@ -2,7 +2,7 @@ package br.com.rhribeiro25.application.usecases;
 
 import br.com.rhribeiro25.application.dtos.EmployeeResponse;
 import br.com.rhribeiro25.application.mappers.EmployeeAppMapper;
-import br.com.rhribeiro25.domain.models.Employee;
+import br.com.rhribeiro25.domain.models.employee.Employee;
 import br.com.rhribeiro25.domain.repositories.EmployeeRepository;
 
 public class UpdateEmployee {

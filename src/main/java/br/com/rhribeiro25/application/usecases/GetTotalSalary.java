@@ -2,7 +2,7 @@ package br.com.rhribeiro25.application.usecases;
 
 import br.com.rhribeiro25.domain.repositories.DepartmentRepository;
 import br.com.rhribeiro25.domain.services.DepartmentService;
-import br.com.rhribeiro25.domain.models.Department;
+import br.com.rhribeiro25.domain.models.department.Department;
 
 import java.math.BigDecimal;
 

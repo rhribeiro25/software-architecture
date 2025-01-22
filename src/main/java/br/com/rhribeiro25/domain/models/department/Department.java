@@ -1,5 +1,6 @@
-package br.com.rhribeiro25.domain.models;
+package br.com.rhribeiro25.domain.models.department;
 
+import br.com.rhribeiro25.domain.models.employee.Employee;
 import br.com.rhribeiro25.domain.valueobjects.department.Code;
 
 import java.math.BigDecimal;

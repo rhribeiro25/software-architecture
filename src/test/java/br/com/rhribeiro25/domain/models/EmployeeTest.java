@@ -1,5 +1,6 @@
 package br.com.rhribeiro25.domain.models;
 
+import br.com.rhribeiro25.domain.models.employee.Employee;
 import br.com.rhribeiro25.shared.enums.RoleEnum;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

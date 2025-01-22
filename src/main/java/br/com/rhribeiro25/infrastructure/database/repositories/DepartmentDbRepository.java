@@ -1,6 +1,6 @@
 package br.com.rhribeiro25.infrastructure.database.repositories;
 
-import br.com.rhribeiro25.domain.models.Department;
+import br.com.rhribeiro25.domain.models.department.Department;
 import br.com.rhribeiro25.domain.repositories.DepartmentRepository;
 import br.com.rhribeiro25.infrastructure.database.entities.DepartmentDbEntity;
 import br.com.rhribeiro25.infrastructure.database.mappers.DepartmentDbMapper;

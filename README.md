@@ -230,3 +230,25 @@ curl -X GET 'http://localhost:9090/employees?storage=FILE''
 
 ![image](https://github.com/user-attachments/assets/d596e4c9-0596-4958-9239-6f7c05cd34a1)
 
+
+
+
+
+1 - Strategy Pattern:
+Used to encapsulate different tax calculation algorithms (ICMS, ISS) and make them interchangeable without altering the client code (TaxCalculator).
+
+2 - Decorator Pattern:
+Allows dynamic composition of multiple taxes. For example, you can apply both ICMS and ISS to the same budget by chaining them.
+
+3 - State Pattern: Manages budget states (InAnalysis, Approved, Rejected, Finalized) and transitions. Each state defines specific behavior, such as discount eligibility and transitions.
+
+4 - Composite Pattern: Used in Budget and BudgetItem to manage items as part of the budget, treating individual and grouped objects uniformly.
+
+5 - Proxy Pattern: Proxy Pattern (Lazy Initialization):
+The getValue method simulates a delay in retrieving the value of the budget. This could be an example of Proxy Pattern with lazy initialization, where the value is only computed when it is accessed for the first time.
+
+6 - Command Pattern: Implemented in AcaoAposGerarPedido and its concrete implementations (CriarPedidoNoBanco, EnviarPedidoPorEmail). Each action is encapsulated as a command, enabling flexibility and scalability for adding new actions.
+
+7 - Facade Pattern:
+The BudgetRegistration class acts as a Facade by simplifying the interaction with an external system (in this case, an API). It hides the complexities of preparing the request and sending it, exposing a simple register method for clients.
+The facade pattern helps provide a clean and simplified interface for complex subsystems.

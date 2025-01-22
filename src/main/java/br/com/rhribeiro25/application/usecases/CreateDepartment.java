@@ -2,7 +2,7 @@ package br.com.rhribeiro25.application.usecases;
 
 import br.com.rhribeiro25.application.dtos.DepartmentResponse;
 import br.com.rhribeiro25.application.mappers.DepartmentAppMapper;
-import br.com.rhribeiro25.domain.models.Department;
+import br.com.rhribeiro25.domain.models.department.Department;
 import br.com.rhribeiro25.domain.repositories.DepartmentRepository;
 
 public class CreateDepartment {

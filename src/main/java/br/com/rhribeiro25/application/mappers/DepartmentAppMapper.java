@@ -1,7 +1,7 @@
 package br.com.rhribeiro25.application.mappers;
 
 import br.com.rhribeiro25.application.dtos.DepartmentResponse;
-import br.com.rhribeiro25.domain.models.Department;
+import br.com.rhribeiro25.domain.models.department.Department;
 
 import java.util.List;
 import java.util.stream.Collectors;

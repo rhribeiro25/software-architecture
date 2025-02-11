@@ -6,23 +6,22 @@ import br.com.rhribeiro25.domain.repositories.OrderRepository;
 import br.com.rhribeiro25.domain.valueobjects.budget.BudgetItem;
 import br.com.rhribeiro25.interfaces.dtos.GenerateOrderRequest;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class GenerateOrderHandler {
+public class OrderCommandHandler {
 
-    private List<OrderRepository> postGenerationActions;
+    private List<OrderRepository> repositories;
 
     /**
      * Constructor that injects the actions to be performed after generating an order.
      *
-     * @param postGenerationActions A list of actions (OrderRepository implementations) to run after generating an order.
+     * @param repositories A list of actions (OrderRepository implementations) to run after generating an order.
      *                               This allows flexibility in the actions to be executed.
      *                               <p>Design Pattern: Dependency Injection</p>
      */
-    public GenerateOrderHandler(List<OrderRepository> postGenerationActions) {
-        this.postGenerationActions = postGenerationActions;
+    public OrderCommandHandler(List<OrderRepository> repositories) {
+        this.repositories = repositories;
     }
 
     /**
@@ -45,6 +44,6 @@ public class GenerateOrderHandler {
         Order order = new Order(request.getClient(), LocalDateTime.now(), budget);
 
         // Execute all post-generation actions (e.g., saving, notifications)
-        this.postGenerationActions.forEach(action -> action.save(order));
+        this.repositories.forEach(action -> action.save(order));
     }
 }
